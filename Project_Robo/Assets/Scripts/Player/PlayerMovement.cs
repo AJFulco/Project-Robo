@@ -26,15 +26,20 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    // CHRIS CODE
+    private PuzzleUI UI = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        UI = GameObject.Find("Canvas").GetComponent<PuzzleUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
 
         //Example of Rewired code
         if (player.GetButtonDown("Action")) //in the "" you write the name of the action you labled in the Rewired Input Manager
@@ -43,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-
+        if (player.GetButtonDown("ShowPuzzle"))
+        {
+            UI.togglePuzzle1();
+        }
     }
 }

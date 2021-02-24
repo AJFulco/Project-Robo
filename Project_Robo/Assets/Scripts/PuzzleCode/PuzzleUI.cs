@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Rewired;
 
 public class PuzzleUI : MonoBehaviour
 { 
     [SerializeField] public GameObject puzzle1;
-
+    private ArrayList puzzle1Nodes;
 
     // Start is called before the first frame update
     void Start()
     {
         puzzle1.SetActive(false);
+        puzzle1Nodes.Add(puzzle1.GetComponentsInChildren<Image>());
     }
 
     // Update is called once per frame
@@ -27,4 +29,5 @@ public class PuzzleUI : MonoBehaviour
         else
             puzzle1.SetActive(true);
     }
+
 }

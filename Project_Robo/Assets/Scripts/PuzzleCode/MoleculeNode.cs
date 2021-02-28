@@ -28,11 +28,19 @@ public class MoleculeNode : MonoBehaviour
 
     public bool moving = false;
     [SerializeField] private bool canMove;
+    [SerializeField] public int numConnections;
     [SerializeField] public Color nodeColor = Color.red;
     [SerializeField] public string nodeType = "basic";
     [SerializeField] public Image thisNode;
     [SerializeField] public Image cursor;
+    [SerializeField] public GameObject connectorPrefab;
+
+    List<MoleculeNode> nearby = new List<MoleculeNode>();
+    List<MoleculeNode> currentlyConnected = new List<MoleculeNode>();
+    public int currentConnections = 0;
+
     public RectTransform rect = null;
+    public PuzzleMaster master = null;
     public CursorFollow follow = null;
     public Collider2D collide = null;
 
@@ -47,8 +55,12 @@ public class MoleculeNode : MonoBehaviour
         if (cursor != null)
             follow = cursor.GetComponent<CursorFollow>();
 
+        master = GetComponentInParent<PuzzleMaster>();
         rect = GetComponent<RectTransform>();
         collide = GetComponent<Collider2D>();
+
+        if (master != null)
+            Debug.Log("Found it");
     }
 
     // Update is called once per frame
@@ -77,6 +89,7 @@ public class MoleculeNode : MonoBehaviour
 
 
         HandleMotion();
+        HandleConnections();
     }
 
     void HandleMotion()
@@ -84,6 +97,29 @@ public class MoleculeNode : MonoBehaviour
         if (moving)
         {
             rect.transform.position = cursor.rectTransform.position;
+        }
+    }
+
+    void HandleConnections()
+    {
+        if (!moving)
+        {
+            if (master != null)
+                nearby = master.nearbyNodes(this, numConnections);
+
+            if (nearby.Count > 0)
+            {
+                for (int i = 0; i < nearby.Count; i++)
+                {
+                    MoleculeNode currentNode = nearby[i];
+
+                    if (!currentlyConnected.Contains(currentNode))
+                    {
+                        Instantiate<GameObject>(connectorPrefab);
+                        currentlyConnected.Add(currentNode);
+                    }
+                }
+            }
         }
     }
 }

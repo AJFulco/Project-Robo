@@ -27,13 +27,11 @@ public class PuzzleUI : MonoBehaviour
     #endregion
 
     [SerializeField] public GameObject puzzle1;
-    private ArrayList puzzle1Nodes;
 
     // Start is called before the first frame update
     void Start()
     {
         puzzle1.SetActive(false);
-        puzzle1Nodes.Add(puzzle1.GetComponentsInChildren<Image>());
     }
 
     // Update is called once per frame
@@ -51,6 +49,12 @@ public class PuzzleUI : MonoBehaviour
             puzzle1.SetActive(false);
         else
             puzzle1.SetActive(true);
+    }
+
+    public void exitPuzzle()
+    {
+        if (puzzle1.activeSelf)
+            puzzle1.SetActive(false);
     }
 
 }

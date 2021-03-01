@@ -27,16 +27,20 @@ public class MoleculeNode : MonoBehaviour
     #endregion
 
     public bool moving = false;
+    public bool satisfied = false;
+    public bool ruleMet = false;
     [SerializeField] private bool canMove;
     [SerializeField] public int numConnections;
     [SerializeField] public Color nodeColor = Color.red;
     [SerializeField] public string nodeType = "basic";
     [SerializeField] public Image thisNode;
     [SerializeField] public Image cursor;
-    [SerializeField] public GameObject connectorPrefab;
+    [SerializeField] public GameObject nearbyDetector;
+    [SerializeField] public Connector connectorPrefab;
 
+    public List<Connector> connectorList = new List<Connector>();
+    public List<MoleculeNode> currentlyConnected = new List<MoleculeNode>();
     List<MoleculeNode> nearby = new List<MoleculeNode>();
-    List<MoleculeNode> currentlyConnected = new List<MoleculeNode>();
     public int currentConnections = 0;
 
     public RectTransform rect = null;
@@ -61,6 +65,11 @@ public class MoleculeNode : MonoBehaviour
 
         if (master != null)
             Debug.Log("Found it");
+
+        if (nodeType == "basic" || nodeType == "goalBasic")
+        {
+            ruleMet = true;
+        }
     }
 
     // Update is called once per frame
@@ -87,9 +96,11 @@ public class MoleculeNode : MonoBehaviour
             }
         }
 
+        currentConnections = currentlyConnected.Count;
 
         HandleMotion();
         HandleConnections();
+        satisfied = isSatisfied();
     }
 
     void HandleMotion()
@@ -104,8 +115,8 @@ public class MoleculeNode : MonoBehaviour
     {
         if (!moving)
         {
-            if (master != null)
-                nearby = master.nearbyNodes(this, numConnections);
+            if (master != null && nearbyDetector != null)
+                nearby = master.nearbyNodes(this);
 
             if (nearby.Count > 0)
             {
@@ -113,13 +124,64 @@ public class MoleculeNode : MonoBehaviour
                 {
                     MoleculeNode currentNode = nearby[i];
 
-                    if (!currentlyConnected.Contains(currentNode))
+                    if (!currentlyConnected.Contains(currentNode) && currentConnections < numConnections && currentNode.currentConnections < currentNode.numConnections)
                     {
-                        Instantiate<GameObject>(connectorPrefab);
+                        Vector3 connectorPos = new Vector3((transform.position.x + nearby[i].transform.position.x) / 2, (transform.position.y + nearby[i].transform.position.y) / 2, 10);
+                        Connector connector = Instantiate(connectorPrefab, connectorPos, transform.rotation, transform);
+
+                        connector.node1 = this;
+                        connector.node2 = nearby[i];
+                        connector.transform.LookAt(transform);
+                        connectorList.Add(connector);
                         currentlyConnected.Add(currentNode);
+                        connector.finishConnection();
+                        currentConnections++;
+                    }
+
+                }
+
+                for (int i = 0; i < currentlyConnected.Count; i++)
+                {
+                    if (!nearby.Contains(currentlyConnected[i]))
+                    {
+                        for (int j = 0; j < connectorList.Count; j++)
+                        {
+                            if (connectorList[j].node2 == currentlyConnected[i])
+                            {
+                                Connector temp = connectorList[j];
+                                Destroy(connectorList[j].gameObject);
+                                connectorList.RemoveAt(j);
+                                
+                            }
+                        }
+                        currentlyConnected.RemoveAt(i);
                     }
                 }
             }
         }
+        else
+        {
+            for (int i = 0; i < connectorList.Count; i++)
+            {
+                Connector temp = connectorList[i];
+                connectorList.RemoveAt(i);
+                Destroy(temp.gameObject);
+                Debug.Log("Current Connections: " + currentConnections);
+            }
+
+            for (int i = 0; i < currentlyConnected.Count; i++)
+            {
+                currentlyConnected[i].currentlyConnected.Remove(this);
+                currentlyConnected.RemoveAt(i);
+            }
+        }
+    }
+
+    bool isSatisfied()
+    {
+        if (currentConnections == numConnections && ruleMet)
+            return true;
+        else
+            return false;
     }
 }

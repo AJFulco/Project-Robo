@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 6606368738853668361}
   - component: {fileID: 6606368738853668363}
   - component: {fileID: -5862405896240253075}
+  - component: {fileID: 8079233083950311650}
   m_Layer: 5
   m_Name: MoleculeNode
   m_TagString: Untagged
@@ -144,13 +145,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 0
   moving: 0
+  satisfied: 0
+  ruleMet: 0
   canMove: 1
   numConnections: 2
   nodeColor: {r: 1, g: 0, b: 0, a: 1}
   nodeType: basic
   thisNode: {fileID: 6606368738853668361}
   cursor: {fileID: 0}
-  connectorPrefab: {fileID: 3775208051931469011, guid: 75b1b1b151f24ae42b8562a4edd25520, type: 3}
+  nearbyDetector: {fileID: 2426007120196773154}
+  connectorPrefab: {fileID: -7983890082785867312, guid: 75b1b1b151f24ae42b8562a4edd25520, type: 3}
   currentConnections: 0
   rect: {fileID: 0}
   master: {fileID: 0}
@@ -172,3 +176,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.24993896}
   serializedVersion: 2
   m_Radius: 39.04059
+--- !u!50 &8079233083950311650
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606368738853668367}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

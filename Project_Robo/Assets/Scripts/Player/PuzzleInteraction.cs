@@ -47,6 +47,12 @@ public class PuzzleInteraction : MonoBehaviour
         {
             UI.exitPuzzle();
         }
+
+        if (player.GetButtonDown("PuzzlePrevious"))
+            UI.HandlePuzzleSwitching("previous");
+
+        if (player.GetButtonDown("PuzzleNext"))
+            UI.HandlePuzzleSwitching("next");
     }
 
 

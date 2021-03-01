@@ -10,6 +10,7 @@ public class PuzzleMaster : MonoBehaviour
     private MoleculeNode[] nodes = new MoleculeNode[100];
     private List<MoleculeNode> allNodes = new List<MoleculeNode>();
     private List<MoleculeNode> goals = new List<MoleculeNode>();
+    public bool isComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,7 @@ public class PuzzleMaster : MonoBehaviour
         if (!victory.activeSelf)
         {
             victory.SetActive(true);
+            isComplete = true;
         }
     }
 }

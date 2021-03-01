@@ -26,35 +26,67 @@ public class PuzzleUI : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] public GameObject puzzle1;
+    [SerializeField] public List<GameObject> puzzles;
+    public int currentPuzzle = 0;
+    [SerializeField] public GameObject holder;
 
     // Start is called before the first frame update
     void Start()
     {
-        puzzle1.SetActive(false);
+        if (puzzles.Count > 0)
+        {
+            for (int i = 0; i < puzzles.Count; i++)
+                puzzles[i].SetActive(false);
+        }
+
+        holder.SetActive(false);
+        puzzles[0].SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (new AxisCoordinateMode)
-        {
-
-        }*/
+        
     }
 
     public void togglePuzzle1()
     {
-        if (puzzle1.activeSelf)
-            puzzle1.SetActive(false);
+        if (holder.activeSelf)
+            holder.SetActive(false);
         else
-            puzzle1.SetActive(true);
+            holder.SetActive(true);
     }
 
     public void exitPuzzle()
     {
-        if (puzzle1.activeSelf)
-            puzzle1.SetActive(false);
+        if (holder.activeSelf)
+            holder.SetActive(false);;
+    }
+
+    public void HandlePuzzleSwitching(string direction)
+    {
+        if (!holder.activeSelf)
+            return;
+
+        if (direction == "previous")
+        {
+            if (currentPuzzle - 1 >= 0)
+            {
+                puzzles[currentPuzzle].SetActive(false);
+                puzzles[currentPuzzle - 1].SetActive(true);
+                currentPuzzle--;
+            }
+        }
+
+        if (direction == "next")
+        {
+            if (puzzles[currentPuzzle].GetComponent<PuzzleMaster>().isComplete && currentPuzzle + 1 < puzzles.Count)
+            {
+                puzzles[currentPuzzle].SetActive(false);
+                puzzles[currentPuzzle + 1].SetActive(true);
+                currentPuzzle++;
+            } 
+        }
     }
 
 }

@@ -32,7 +32,7 @@ public class PuzzleInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.Find("Canvas").GetComponent<PuzzleUI>();
+        UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
     }
 
     // Update is called once per frame

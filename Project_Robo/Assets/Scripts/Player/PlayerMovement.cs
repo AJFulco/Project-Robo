@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.Find("Canvas").GetComponent<PuzzleUI>();
+        UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
     }
 
     // Update is called once per frame
@@ -64,11 +64,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //notice how we used "player" instead of "Input"
             return;
-        }
-
-        if (player.GetButtonDown("ShowPuzzle"))
-        {
-            UI.togglePuzzle1();
         }
     }
 }

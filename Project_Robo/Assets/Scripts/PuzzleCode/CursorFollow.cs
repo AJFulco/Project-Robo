@@ -16,7 +16,7 @@ public class CursorFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.Find("Canvas").GetComponent<PuzzleUI>();
+        UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
         rect = this.GetComponent<RectTransform>();
         collide = this.GetComponent<Collider2D>();
     }

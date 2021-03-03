@@ -35,6 +35,7 @@ public class MoleculeNode : MonoBehaviour
     [SerializeField] public string nodeType = "basic";
     [SerializeField] public Image thisNode;
     [SerializeField] public Image cursor;
+    [SerializeField] public Sprite triangle;
     [SerializeField] public GameObject nearbyDetector;
     [SerializeField] public Connector connectorPrefab;
 
@@ -47,6 +48,8 @@ public class MoleculeNode : MonoBehaviour
     public PuzzleMaster master = null;
     public CursorFollow follow = null;
     public Collider2D collide = null;
+
+    private static float delta = 0.0001f;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +72,11 @@ public class MoleculeNode : MonoBehaviour
         if (nodeType == "basic" || nodeType == "goalBasic")
         {
             ruleMet = true;
+        }
+
+        if (numConnections == 3 && triangle != null)
+        {
+            thisNode.sprite = triangle;
         }
     }
 
@@ -100,6 +108,10 @@ public class MoleculeNode : MonoBehaviour
 
         HandleMotion();
         HandleConnections();
+
+        if (nodeType != "basic" && nodeType != "goalBasic")
+            HandleRules();
+
         satisfied = isSatisfied();
     }
 
@@ -174,6 +186,31 @@ public class MoleculeNode : MonoBehaviour
                 currentlyConnected[i].currentlyConnected.Remove(this);
                 currentlyConnected.RemoveAt(i);
             }
+        }
+    }
+
+    void HandleRules()
+    {
+        if (nodeType == "spiked")
+        {
+            int sameColor = 0;
+
+            if (currentlyConnected.Count > 0)
+            {
+                for (int i = 0; i < currentlyConnected.Count; i++)
+                {
+                    if (currentlyConnected[i].nodeColor.linear.r - nodeColor.linear.r < delta &&
+                        currentlyConnected[i].nodeColor.linear.g - nodeColor.linear.g < delta &&
+                        currentlyConnected[i].nodeColor.linear.b - nodeColor.linear.b < delta &&
+                        currentlyConnected[i].nodeColor.linear.a - nodeColor.linear.a < delta)
+                        sameColor++;
+                }
+            }
+
+            Debug.Log("sameColor: " + sameColor);
+
+            if (sameColor == 1)
+                ruleMet = true;
         }
     }
 

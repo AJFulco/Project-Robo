@@ -36,6 +36,7 @@ public class MoleculeNode : MonoBehaviour
     [SerializeField] public Image thisNode;
     [SerializeField] public Image cursor;
     [SerializeField] public Sprite triangle;
+    [SerializeField] public Image spikes;
     [SerializeField] public GameObject nearbyDetector;
     [SerializeField] public Connector connectorPrefab;
 
@@ -49,6 +50,7 @@ public class MoleculeNode : MonoBehaviour
     public CursorFollow follow = null;
     public Collider2D collide = null;
 
+    private Image childSpikes = null;
     private static float delta = 0.0001f;
 
     // Start is called before the first frame update
@@ -77,6 +79,19 @@ public class MoleculeNode : MonoBehaviour
         if (numConnections == 3 && triangle != null)
         {
             thisNode.sprite = triangle;
+        }
+
+        if (nodeType == "spiked")
+        {
+            childSpikes = Instantiate<Image>(spikes, transform.position, transform.rotation, master.transform);
+            childSpikes.rectTransform.SetSiblingIndex(transform.GetSiblingIndex() - 1);
+
+            childSpikes.color = nodeColor;
+
+            Image[] spikeArray = childSpikes.GetComponentsInChildren<Image>();
+
+            for (int i = 0; i < spikeArray.Length; i++)
+                spikeArray[i].color = nodeColor;
         }
     }
 
@@ -120,6 +135,9 @@ public class MoleculeNode : MonoBehaviour
         if (moving)
         {
             rect.transform.position = cursor.rectTransform.position;
+
+            if (childSpikes != null)
+                childSpikes.rectTransform.position = cursor.rectTransform.position;
         }
     }
 

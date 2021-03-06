@@ -51,7 +51,7 @@ public class MoleculeNode : MonoBehaviour
     public Collider2D collide = null;
 
     private Image childSpikes = null;
-    private static float delta = 0.0001f;
+    private static float delta = 0.001f;
 
     // Start is called before the first frame update
     void Start()
@@ -217,12 +217,11 @@ public class MoleculeNode : MonoBehaviour
             {
                 for (int i = 0; i < currentlyConnected.Count; i++)
                 {
-                    if (currentlyConnected[i].nodeColor.linear.r - nodeColor.linear.r < delta &&
-                        currentlyConnected[i].nodeColor.linear.g - nodeColor.linear.g < delta &&
-                        currentlyConnected[i].nodeColor.linear.b - nodeColor.linear.b < delta &&
-                        currentlyConnected[i].nodeColor.linear.a - nodeColor.linear.a < delta)
+                    if (Mathf.Abs(currentlyConnected[i].nodeColor.linear.r - nodeColor.linear.r) <= delta &&
+                        Mathf.Abs(currentlyConnected[i].nodeColor.linear.g - nodeColor.linear.g) <= delta &&
+                        Mathf.Abs(currentlyConnected[i].nodeColor.linear.b - nodeColor.linear.b) <= delta)
                         sameColor++;
-                }
+                } 
             }
 
             Debug.Log("sameColor: " + sameColor);

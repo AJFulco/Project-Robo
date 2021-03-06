@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PuzzleObject : MonoBehaviour
-{
+{ 
 
     [SerializeField] private GameObject selfObject;
     [SerializeField] private GameObject placementCube;
     [SerializeField] public int puzzleID;
+
+    public bool cleared = false;
+    public bool near = false;
 
     private PuzzleUI UI = null;
     public BoxCollider collider = null;
@@ -33,15 +38,16 @@ public class PuzzleObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+            cleared = true;
+        else
+            cleared = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Collided with Player");
-
             UI.currentPuzzle = puzzleID;
 
             for (int i = 0; i < UI.puzzles.Count; i++)
@@ -51,6 +57,8 @@ public class PuzzleObject : MonoBehaviour
                 else
                     UI.puzzles[i].SetActive(false);
             }
+
+            UI.togglePuzzle();
         }
     }
 }

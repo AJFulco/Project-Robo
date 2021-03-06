@@ -27,8 +27,10 @@ public class PuzzleUI : MonoBehaviour
     #endregion
 
     [SerializeField] public List<GameObject> puzzles;
+    [SerializeField] public List<GameObject> puzzleObjects;
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
+    [SerializeField] public Text puzzleNear;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,7 @@ public class PuzzleUI : MonoBehaviour
         
     }
 
-    public void togglePuzzle1()
+    public void togglePuzzle()
     {
         if (holder.activeSelf)
             holder.SetActive(false);

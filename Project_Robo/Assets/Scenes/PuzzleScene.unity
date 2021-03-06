@@ -208,7 +208,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152169463}
-  m_LocalRotation: {x: 0.44135335, y: 0.00000041258872, z: -0.00000022927357, w: 0.8973334}
+  m_LocalRotation: {x: 0.44135335, y: 0.00000041259142, z: -0.00000022927271, w: 0.8973334}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -222,7 +222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-16046
+  m_Name: pb_Mesh-1652
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -391,6 +391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuzzleReadyCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9084769514669396344, guid: c0d1451055e4b8b4e985c10808bcc963, type: 3}
+      propertyPath: puzzleNear
+      value: 
+      objectReference: {fileID: 1030779318}
     - target: {fileID: 9084769514669396345, guid: c0d1451055e4b8b4e985c10808bcc963, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1337,7 +1341,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810834811}
-  m_LocalRotation: {x: 0.42502403, y: -0, z: -0, w: 0.9051821}
+  m_LocalRotation: {x: 0.4250238, y: -0, z: -0, w: 0.90518224}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1400,7 +1404,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825130883}
-  m_LocalRotation: {x: 0.5138033, y: 0.0029582498, z: -0.0017714815, w: 0.85790116}
+  m_LocalRotation: {x: 0.51380336, y: 0.0029549955, z: -0.0017695337, w: 0.8579011}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1485,7 +1489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.51380336, y: 0.002958362, z: -0.0017717851, w: 0.85790104}
+  m_LocalRotation: {x: 0.5138032, y: 0.0029546532, z: -0.001769563, w: 0.8579012}
   m_LocalPosition: {x: 0, y: 19.58, z: -17.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1574,8 +1578,131 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actionIdCounter
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.data[9]._id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.data[9]._name
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.data[9]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.data[9]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actions.Array.data[9]._descriptiveName
+      value: Used for non-mouse based actions.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[9]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.mouseMaps.Array.data[0].actionElementMaps.Array.data[2]._actionId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866984915943101434, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._actionId
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb09df0ac017da342b4cf442b5df4126, type: 3}
+--- !u!1 &1030779317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030779320}
+  - component: {fileID: 1030779319}
+  - component: {fileID: 1030779318}
+  m_Layer: 5
+  m_Name: PuzzleNotification
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1030779318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030779317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 78
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 78
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Press "E" to display this puzzle
+--- !u!222 &1030779319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030779317}
+  m_CullTransparentMesh: 1
+--- !u!224 &1030779320
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030779317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1330031917}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1250, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1124911442
 GameObject:
   m_ObjectHideFlags: 3
@@ -1800,6 +1927,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1330031917 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9084769516200461147, guid: c0d1451055e4b8b4e985c10808bcc963, type: 3}
+  m_PrefabInstance: {fileID: 300940384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1797811648
 PrefabInstance:
   m_ObjectHideFlags: 0

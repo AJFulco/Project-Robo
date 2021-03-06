@@ -40,7 +40,7 @@ public class PuzzleInteraction : MonoBehaviour
     {
         if (player.GetButtonDown("ShowPuzzle"))
         {
-            UI.togglePuzzle1();
+            UI.togglePuzzle();
         }
 
         if (player.GetButtonDown("Exit"))

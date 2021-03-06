@@ -12,7 +12,7 @@ public class PuzzleObject : MonoBehaviour
     [SerializeField] public int puzzleID;
 
     public bool cleared = false;
-    public bool near = false;
+    public bool nearThis = false;
 
     private PuzzleUI UI = null;
     public BoxCollider collider = null;
@@ -44,21 +44,31 @@ public class PuzzleObject : MonoBehaviour
             cleared = false;
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             UI.currentPuzzle = puzzleID;
+            nearThis = true;
+            UI.nearPuzzle = true;
 
-            for (int i = 0; i < UI.puzzles.Count; i++)
-            {
-                if (i == puzzleID)
-                    UI.puzzles[i].SetActive(true);
-                else
-                    UI.puzzles[i].SetActive(false);
-            }
-
-            UI.togglePuzzle();
+            UI.puzzleNearText.gameObject.SetActive(true);
         }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+            UI.puzzleNearText.text = "This task has been completed. Press \"E\" to display it.";
+        else
+            UI.puzzleNearText.text = "Press \"E\" to display this task.";
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        UI.currentPuzzle = -1;
+        nearThis = false;
+        UI.nearPuzzle = false;
+        UI.puzzleNearText.gameObject.SetActive(false);
     }
 }

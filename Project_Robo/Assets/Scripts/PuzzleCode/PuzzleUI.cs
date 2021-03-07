@@ -29,10 +29,6 @@ public class PuzzleUI : MonoBehaviour
     [SerializeField] public List<GameObject> puzzles;
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
-    [SerializeField] public Text puzzleNearText;
-    public PlayerMovement move;
-
-    public bool nearPuzzle = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,42 +41,20 @@ public class PuzzleUI : MonoBehaviour
 
         holder.SetActive(false);
         puzzles[0].SetActive(true);
-
-        move = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nearPuzzle && player.GetButtonDown("Interact"))
-            togglePuzzle();
+        
     }
 
-    public void togglePuzzle()
+    public void togglePuzzle1()
     {
         if (holder.activeSelf)
-        {
             holder.SetActive(false);
-            move.speed = 6;
-        }
         else
-        {
             holder.SetActive(true);
-            move.speed = 0;
-        }
-
-        if (puzzleNearText.gameObject.activeSelf)
-            puzzleNearText.gameObject.SetActive(false);
-        else
-            puzzleNearText.gameObject.SetActive(true);
-
-        for (int i = 0; i < puzzles.Count; i++)
-        {
-            if (i != currentPuzzle)
-                puzzles[i].SetActive(false);
-            else
-                puzzles[i].SetActive(true);
-        }
     }
 
     public void exitPuzzle()

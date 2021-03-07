@@ -29,6 +29,8 @@ public class PuzzleInteraction : MonoBehaviour
     // CHRIS CODE
     private PuzzleUI UI = null;
 
+    public PlayerMovement playerMovement;    // Reference to PlayerMovement
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +42,15 @@ public class PuzzleInteraction : MonoBehaviour
     {
         if (player.GetButtonDown("ShowPuzzle"))
         {
-            UI.togglePuzzle();
+            UI.togglePuzzle1();
+            playerMovement.isInAMenu = true;    // Added to prevent player movement when the puzzel UI is showing
+
         }
 
         if (player.GetButtonDown("Exit"))
         {
             UI.exitPuzzle();
+            playerMovement.isInAMenu = false;   // Added to re-enable the player movement
         }
 
         if (player.GetButtonDown("PuzzlePrevious"))

@@ -153,8 +153,12 @@ MonoBehaviour:
   nodeType: goalBasic
   thisNode: {fileID: 2610489013653416553}
   cursor: {fileID: 0}
+  triangle: {fileID: 0}
+  spikes: {fileID: 4196366515722023018, guid: 05b0ea1da29e0864a87f5467038742ca, type: 3}
   nearbyDetector: {fileID: 618417177439018548}
   connectorPrefab: {fileID: -7983890082785867312, guid: 75b1b1b151f24ae42b8562a4edd25520, type: 3}
+  connectorList: []
+  currentlyConnected: []
   currentConnections: 0
   rect: {fileID: 0}
   master: {fileID: 0}

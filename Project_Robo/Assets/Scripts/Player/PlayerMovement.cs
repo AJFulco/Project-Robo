@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothTime = 0.3f;
     float turnSmoothVelocity;
     public Transform cam;
-    public Animator anim;
-    public bool isInAMenu;  // Is a bool that checks if the player is busy
 
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
@@ -50,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");//negative 1 - 1
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.magnitude >= 0.1f && isInAMenu == false)
+        if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -59,13 +57,8 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
 
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
 
-            anim.SetBool("isWalking", true);
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
         //Example of Rewired code
         if (player.GetButtonDown("Action")) //in the "" you write the name of the action you labled in the Rewired Input Manager
         {

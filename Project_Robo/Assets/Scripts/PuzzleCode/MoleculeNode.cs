@@ -49,6 +49,10 @@ public class MoleculeNode : MonoBehaviour
     public CursorFollow follow = null;
     public Collider2D collide = null;
 
+<<<<<<< HEAD
+=======
+    private Image childSpikes = null;
+>>>>>>> parent of efee674 (Some small tweaks to code, as well as adding new puzzle prefabs to the project as a whole.)
     private static float delta = 0.0001f;
 
     // Start is called before the first frame update

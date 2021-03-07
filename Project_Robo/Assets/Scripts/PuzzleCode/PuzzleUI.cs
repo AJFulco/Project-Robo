@@ -27,6 +27,7 @@ public class PuzzleUI : MonoBehaviour
     #endregion
 
     [SerializeField] public List<GameObject> puzzles;
+    [SerializeField] public List<GameObject> puzzleObjects;
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
 

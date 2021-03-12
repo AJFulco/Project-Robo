@@ -40,12 +40,14 @@ public class PuzzleInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (player.GetButtonDown("ShowPuzzle"))
         {
             UI.togglePuzzle();
             playerMovement.isInAMenu = true;    // Added to prevent player movement when the puzzel UI is showing
 
         }
+        */
 
         if (player.GetButtonDown("Exit"))
         {
@@ -53,11 +55,13 @@ public class PuzzleInteraction : MonoBehaviour
             playerMovement.isInAMenu = false;   // Added to re-enable the player movement
         }
 
+        /*
         if (player.GetButtonDown("PuzzlePrevious"))
             UI.HandlePuzzleSwitching("previous");
 
         if (player.GetButtonDown("PuzzleNext"))
             UI.HandlePuzzleSwitching("next");
+            */
     }
 
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -9,13 +10,16 @@ public class PuzzleObject : MonoBehaviour
 
     [SerializeField] private GameObject selfObject;
     [SerializeField] private GameObject placementCube;
+    [SerializeField] private Text taskTextPrefab;
     [SerializeField] public int puzzleID;
+    [SerializeField] public string taskName = "Observe the Monitor";
+    public GameObject taskHolder;
+    public Text taskText;
 
     public bool cleared = false;
     public bool nearThis = false;
 
     private PuzzleUI UI = null;
-    public BoxCollider collider = null;
 
 
 
@@ -33,13 +37,27 @@ public class PuzzleObject : MonoBehaviour
         {
             Destroy(placementCube.gameObject);
         }
+
+        taskHolder = GameObject.FindGameObjectWithTag("TaskList");
+
+        if (taskHolder != null)
+        {
+            taskText = Instantiate(taskTextPrefab, taskHolder.transform);
+
+            taskText.rectTransform.Translate(new Vector3(0, -60 * (puzzleID + 1), 0));
+
+            taskText.text = taskName;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+        {
             cleared = true;
+            taskText.color = Color.green;
+        }
         else
             cleared = false;
     }

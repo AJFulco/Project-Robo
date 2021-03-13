@@ -47,8 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfObject: {fileID: 0}
   placementCube: {fileID: 8632859345123192786}
+  taskTextPrefab: {fileID: 8025588474947579541, guid: 2b277a30c79b07648bff32e8b46ee8c9, type: 3}
   puzzleID: 0
-  collision: {fileID: 0}
+  taskName: Observe the Monitor
+  taskHolder: {fileID: 0}
+  taskText: {fileID: 0}
+  cleared: 0
+  nearThis: 0
 --- !u!65 &7569359348855922315
 BoxCollider:
   m_ObjectHideFlags: 0

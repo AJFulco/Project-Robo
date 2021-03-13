@@ -26,6 +26,7 @@ public class PuzzleUI : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] public List<PuzzleObject> puzzleObjects;
     [SerializeField] public List<GameObject> puzzles;
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
@@ -87,6 +88,26 @@ public class PuzzleUI : MonoBehaviour
     {
         if (holder.activeSelf)
             holder.SetActive(false);;
+    }
+
+    public void UpdateTaskColor(PuzzleMaster solved)
+    {
+        int id = -1;
+
+        for (int i = 0; i < puzzles.Count; i++)
+        {
+            if (puzzles[i] == solved)
+                id = i;
+        }
+
+        if (id != -1)
+        {
+            for (int i = 0; i < puzzleObjects.Count; i++)
+            {
+                if (puzzleObjects[i].puzzleID == id)
+                    puzzleObjects[i].taskText.color = new Color(100, 255, 100);
+            }
+        }
     }
 
     public void HandlePuzzleSwitching(string direction)

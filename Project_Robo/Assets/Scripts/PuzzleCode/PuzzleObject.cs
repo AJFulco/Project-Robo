@@ -2,11 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 
 
 public class PuzzleObject : MonoBehaviour
-{ 
+{
+
+    #region Rewired Stuff
+    //Here, we establish what a name that we will use instead of "Input" 
+    private Rewired.Player player;
+    //The playerID lables which player you are, 0=P1, 1=P2, and so on.
+    public int playerId = 0;
+    //Stuff for rumble support
+    int motorIndex0 = 0;
+    int motorIndex1 = 1;
+    #endregion
+
+    #region Awake
+    //Awake function is code that is executed before the Start or OnEnable functions. 
+    private void Awake()
+    {
+
+        //THIS LINE IS CRUCIAL! IF IT IS NOT IN THE SCRIPT REWIRD WONT READ THE INPUTS FROM THE PROPER CONTROL INPUT!
+        player = Rewired.ReInput.players.GetPlayer(playerId);
+    }
+    #endregion
 
     [SerializeField] private GameObject selfObject;
     [SerializeField] private GameObject placementCube;
@@ -25,7 +46,7 @@ public class PuzzleObject : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
 
         if (selfObject != null)
@@ -53,7 +74,7 @@ public class PuzzleObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+        if (UI.puzzles[puzzleID].isComplete)
         {
             cleared = true;
             taskText.color = Color.green;
@@ -76,10 +97,21 @@ public class PuzzleObject : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
-            UI.puzzleNearText.text = "This task has been completed. Press \"E\" to display it.";
+        if (player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Keyboard>() ||
+            player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Mouse>())
+        {
+            if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+                UI.puzzleNearText.text = "This task has been completed. Press \"E\" to display it.";
+            else
+                UI.puzzleNearText.text = "Press \"E\" to display this task.";
+        }
         else
-            UI.puzzleNearText.text = "Press \"E\" to display this task.";
+        {
+            if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
+                UI.puzzleNearText.text = "This task has been completed. Press \"X\" to display it.";
+            else
+                UI.puzzleNearText.text = "Press \"X\" to display this task.";
+        }
     }
 
     public void OnTriggerExit(Collider other)

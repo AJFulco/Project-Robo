@@ -36,9 +36,10 @@ public class MoleculeNode : MonoBehaviour
     [SerializeField] public Image thisNode;
     [SerializeField] public Image cursor;
     [SerializeField] public Sprite triangle;
-    [SerializeField] public Image spikes;
+    [SerializeField] public Sprite spikes;
     [SerializeField] public GameObject nearbyDetector;
     [SerializeField] public Connector connectorPrefab;
+    [SerializeField] private AudioClip nodeConnect;
 
     public List<Connector> connectorList = new List<Connector>();
     public List<MoleculeNode> currentlyConnected = new List<MoleculeNode>();
@@ -68,9 +69,6 @@ public class MoleculeNode : MonoBehaviour
         rect = GetComponent<RectTransform>();
         collide = GetComponent<Collider2D>();
 
-        if (master != null)
-            Debug.Log("Found it");
-
         if (nodeType == "basic" || nodeType == "goalBasic")
         {
             ruleMet = true;
@@ -83,15 +81,7 @@ public class MoleculeNode : MonoBehaviour
 
         if (nodeType == "spiked")
         {
-            childSpikes = Instantiate<Image>(spikes, transform.position, transform.rotation, master.transform);
-            childSpikes.rectTransform.SetSiblingIndex(transform.GetSiblingIndex() - 1);
-
-            childSpikes.color = nodeColor;
-
-            Image[] spikeArray = childSpikes.GetComponentsInChildren<Image>();
-
-            for (int i = 0; i < spikeArray.Length; i++)
-                spikeArray[i].color = nodeColor;
+            thisNode.sprite = spikes;
         }
     }
 
@@ -166,6 +156,11 @@ public class MoleculeNode : MonoBehaviour
                         currentlyConnected.Add(currentNode);
                         connector.finishConnection();
                         currentConnections++;
+
+                        if (nodeConnect != null)
+                        {
+                            AudioSource.PlayClipAtPoint(nodeConnect, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+                        }
                     }
 
                 }
@@ -196,7 +191,7 @@ public class MoleculeNode : MonoBehaviour
                 Connector temp = connectorList[i];
                 connectorList.RemoveAt(i);
                 Destroy(temp.gameObject);
-                Debug.Log("Current Connections: " + currentConnections);
+                //Debug.Log("Current Connections: " + currentConnections);
             }
 
             for (int i = 0; i < currentlyConnected.Count; i++)
@@ -224,7 +219,7 @@ public class MoleculeNode : MonoBehaviour
                 } 
             }
 
-            Debug.Log("sameColor: " + sameColor);
+            //Debug.Log("sameColor: " + sameColor);
 
             if (sameColor == 1)
                 ruleMet = true;

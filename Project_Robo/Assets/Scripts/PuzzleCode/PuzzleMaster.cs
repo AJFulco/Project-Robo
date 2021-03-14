@@ -6,6 +6,7 @@ public class PuzzleMaster : MonoBehaviour
 {
 
     [SerializeField] public GameObject victory;
+    [SerializeField] private AudioClip puzzlePass;
 
     private MoleculeNode[] nodes = new MoleculeNode[100];
     private List<MoleculeNode> allNodes = new List<MoleculeNode>();
@@ -16,7 +17,7 @@ public class PuzzleMaster : MonoBehaviour
     void Start()
     {
         nodes = GetComponentsInChildren<MoleculeNode>();
-        Debug.Log(nodes.Length);
+        //Debug.Log(nodes.Length);
 
         for (int i = 0; i < nodes.Length; i++)
         {
@@ -49,6 +50,11 @@ public class PuzzleMaster : MonoBehaviour
             IsComplete();
     }
 
+    public List<MoleculeNode> GetNodes()
+    {
+        return allNodes;
+    }
+
     public List<MoleculeNode> nearbyNodes(MoleculeNode node)
     {
         List<MoleculeNode> nodeList = new List<MoleculeNode>();
@@ -78,6 +84,11 @@ public class PuzzleMaster : MonoBehaviour
         {
             victory.SetActive(true);
             isComplete = true;
+
+            if (puzzlePass != null)
+            {
+                AudioSource.PlayClipAtPoint(puzzlePass, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+            }
         }
     }
 }

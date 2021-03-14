@@ -27,10 +27,11 @@ public class PuzzleUI : MonoBehaviour
     #endregion
 
     [SerializeField] public List<PuzzleObject> puzzleObjects;
-    [SerializeField] public List<GameObject> puzzles;
+    [SerializeField] public List<PuzzleMaster> puzzles;
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
     [SerializeField] public Text puzzleNearText;
+    [SerializeField] private AudioClip puzzleStart;
     public PlayerMovement move;
 
     public bool nearPuzzle = false;
@@ -41,11 +42,11 @@ public class PuzzleUI : MonoBehaviour
         if (puzzles.Count > 0)
         {
             for (int i = 0; i < puzzles.Count; i++)
-                puzzles[i].SetActive(false);
+                puzzles[i].gameObject.SetActive(false);
         }
 
         holder.SetActive(false);
-        puzzles[0].SetActive(true);
+        puzzles[0].gameObject.SetActive(true);
 
         move = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
@@ -55,6 +56,8 @@ public class PuzzleUI : MonoBehaviour
     {
         if (nearPuzzle && player.GetButtonDown("Interact"))
             togglePuzzle();
+
+        //Debug.Log(player.GetCurrentInputSources("Horizontal").Count);
     }
 
     public void togglePuzzle()
@@ -66,6 +69,11 @@ public class PuzzleUI : MonoBehaviour
         }
         else
         {
+            if (puzzleStart != null)
+            {
+                AudioSource.PlayClipAtPoint(puzzleStart, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+            }
+
             holder.SetActive(true);
             move.speed = 0;
         }
@@ -78,9 +86,9 @@ public class PuzzleUI : MonoBehaviour
         for (int i = 0; i < puzzles.Count; i++)
         {
             if (i != currentPuzzle)
-                puzzles[i].SetActive(false);
+                puzzles[i].gameObject.SetActive(false);
             else
-                puzzles[i].SetActive(true);
+                puzzles[i].gameObject.SetActive(true);
         }
     }
 
@@ -119,8 +127,8 @@ public class PuzzleUI : MonoBehaviour
         {
             if (currentPuzzle - 1 >= 0)
             {
-                puzzles[currentPuzzle].SetActive(false);
-                puzzles[currentPuzzle - 1].SetActive(true);
+                puzzles[currentPuzzle].gameObject.SetActive(false);
+                puzzles[currentPuzzle - 1].gameObject.SetActive(true);
                 currentPuzzle--;
             }
         }
@@ -129,8 +137,8 @@ public class PuzzleUI : MonoBehaviour
         {
             if (puzzles[currentPuzzle].GetComponent<PuzzleMaster>().isComplete && currentPuzzle + 1 < puzzles.Count)
             {
-                puzzles[currentPuzzle].SetActive(false);
-                puzzles[currentPuzzle + 1].SetActive(true);
+                puzzles[currentPuzzle].gameObject.SetActive(false);
+                puzzles[currentPuzzle + 1].gameObject.SetActive(true);
                 currentPuzzle++;
             } 
         }

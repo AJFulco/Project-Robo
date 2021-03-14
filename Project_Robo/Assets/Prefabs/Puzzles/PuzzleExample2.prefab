@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victory: {fileID: 1878548380843631550}
+  puzzlePass: {fileID: 8300000, guid: a1146927f61c8484886d794a63086958, type: 3}
   isComplete: 0
 --- !u!1001 &1878548380384737941
 PrefabInstance:

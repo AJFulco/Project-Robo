@@ -31,6 +31,7 @@ public class PuzzleUI : MonoBehaviour
     public int currentPuzzle = 0;
     [SerializeField] public GameObject holder;
     [SerializeField] public Text puzzleNearText;
+    [SerializeField] private AudioClip puzzleStart;
     public PlayerMovement move;
 
     public bool nearPuzzle = false;
@@ -68,6 +69,11 @@ public class PuzzleUI : MonoBehaviour
         }
         else
         {
+            if (puzzleStart != null)
+            {
+                AudioSource.PlayClipAtPoint(puzzleStart, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+            }
+
             holder.SetActive(true);
             move.speed = 0;
         }

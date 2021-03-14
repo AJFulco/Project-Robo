@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 //NEED THIS TO BE ABLE TO USE ANY KIND OF REWIRD FEATURES
-using Rewired; 
+using Rewired;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 6f;
+    public float speed = 6f;    // Player movement speed
     public float turnSmoothTime = 0.3f;
     float turnSmoothVelocity;
-    public Transform cam;
+    public Transform cam;   // Reference to the Main Camera
     public Animator anim;
     public bool isInAMenu;  // Is a bool that checks if the player is busy
+    public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
+    private int cameraYAxisMaxSpeed = 10;
+    private int cameraXAxisMaxSpeed = 300;
 
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
@@ -46,26 +50,43 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");//negative 1 - 1
-        float vertical = Input.GetAxisRaw("Vertical");//negative 1 - 1
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        float horizontal = Input.GetAxisRaw("Horizontal"); // negative 1 - 1
+        float vertical = Input.GetAxisRaw("Vertical"); // negative 1 - 1
 
-        if (direction.magnitude >= 0.1f && isInAMenu == false)
+        // Stop mouse-camera movement if in a puzzle menu
+        if (isInAMenu == false)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f,angle,0f);
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            // Allow camera movement
+            thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraYAxisMaxSpeed;
+            thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraXAxisMaxSpeed;
 
-            Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
+            // Allow movement
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
 
-            anim.SetBool("isWalking", true);
+                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            // Prevent camera movement
+            thirdPersonCamera.m_YAxis.m_MaxSpeed = 0;
+            thirdPersonCamera.m_XAxis.m_MaxSpeed = 0;
         }
+
+        
         //Example of Rewired code
         if (player.GetButtonDown("Action")) //in the "" you write the name of the action you labled in the Rewired Input Manager
         {

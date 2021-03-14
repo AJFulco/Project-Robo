@@ -32,7 +32,7 @@ public class PuzzleUI : MonoBehaviour
     [SerializeField] public GameObject holder;
     [SerializeField] public Text puzzleNearText;
     [SerializeField] private AudioClip puzzleStart;
-    public PlayerMovement move;
+    public PlayerMovement playerMovement; // Get reference to the PlayerMovement
 
     public bool nearPuzzle = false;
 
@@ -48,7 +48,7 @@ public class PuzzleUI : MonoBehaviour
         holder.SetActive(false);
         puzzles[0].gameObject.SetActive(true);
 
-        move = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();  
     }
 
     // Update is called once per frame
@@ -65,7 +65,8 @@ public class PuzzleUI : MonoBehaviour
         if (holder.activeSelf)
         {
             holder.SetActive(false);
-            move.speed = 6;
+            playerMovement.speed = 6;
+            playerMovement.isInAMenu = false;
         }
         else
         {
@@ -75,7 +76,8 @@ public class PuzzleUI : MonoBehaviour
             }
 
             holder.SetActive(true);
-            move.speed = 0;
+            playerMovement.isInAMenu = true;
+            //playerMovement.speed = 0;
         }
 
         if (puzzleNearText.gameObject.activeSelf)

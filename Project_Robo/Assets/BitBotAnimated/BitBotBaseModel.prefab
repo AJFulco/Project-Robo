@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 919132147522786388}
   m_Layer: 0
   m_Name: BitBotBaseModel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,13 +142,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 5.22
+  m_Radius: 1.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.42, y: 3.5, z: 0}
 --- !u!95 &919132147522786385
 Animator:
   serializedVersion: 3
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 0
+  playerMovement: {fileID: 0}
 --- !u!114 &919132147522786388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,10 +195,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 919132147522786386}
-  speed: 6
+  speed: 15
   turnSmoothTime: 0.3
   cam: {fileID: 0}
   anim: {fileID: 919132147522786385}
+  isInAMenu: 0
   playerId: 0
 --- !u!1 &3476667917864484343
 GameObject:
@@ -593,6 +595,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4282831768928739200}
     m_Modifications:
+    - target: {fileID: 2127372601700383, guid: 2a0fbc7449aabba4aaa3480cc53cdaf0, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4441008091133875153, guid: 2a0fbc7449aabba4aaa3480cc53cdaf0, type: 3}
       propertyPath: m_Name
       value: RobotParticleSystem

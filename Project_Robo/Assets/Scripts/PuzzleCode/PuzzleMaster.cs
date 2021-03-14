@@ -16,7 +16,7 @@ public class PuzzleMaster : MonoBehaviour
     void Start()
     {
         nodes = GetComponentsInChildren<MoleculeNode>();
-        Debug.Log(nodes.Length);
+        //Debug.Log(nodes.Length);
 
         for (int i = 0; i < nodes.Length; i++)
         {
@@ -47,6 +47,11 @@ public class PuzzleMaster : MonoBehaviour
 
         if (clearCheck)
             IsComplete();
+    }
+
+    public List<MoleculeNode> GetNodes()
+    {
+        return allNodes;
     }
 
     public List<MoleculeNode> nearbyNodes(MoleculeNode node)

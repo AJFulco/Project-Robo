@@ -68,9 +68,6 @@ public class MoleculeNode : MonoBehaviour
         rect = GetComponent<RectTransform>();
         collide = GetComponent<Collider2D>();
 
-        if (master != null)
-            Debug.Log("Found it");
-
         if (nodeType == "basic" || nodeType == "goalBasic")
         {
             ruleMet = true;
@@ -196,7 +193,7 @@ public class MoleculeNode : MonoBehaviour
                 Connector temp = connectorList[i];
                 connectorList.RemoveAt(i);
                 Destroy(temp.gameObject);
-                Debug.Log("Current Connections: " + currentConnections);
+                //Debug.Log("Current Connections: " + currentConnections);
             }
 
             for (int i = 0; i < currentlyConnected.Count; i++)
@@ -224,7 +221,7 @@ public class MoleculeNode : MonoBehaviour
                 } 
             }
 
-            Debug.Log("sameColor: " + sameColor);
+            //Debug.Log("sameColor: " + sameColor);
 
             if (sameColor == 1)
                 ruleMet = true;

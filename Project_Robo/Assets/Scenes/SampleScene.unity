@@ -189,7 +189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152169463}
-  m_LocalRotation: {x: 0.4413537, y: 0.00000045170773, z: -0.0000002438766, w: 0.89733326}
+  m_LocalRotation: {x: 0.44135365, y: 0.0000004517082, z: -0.00000024387683, w: 0.89733326}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1710,7 +1710,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810834811}
-  m_LocalRotation: {x: 0.42502403, y: 0.0000003916111, z: -0.00000018047876, w: 0.9051821}
+  m_LocalRotation: {x: 0.4250238, y: 0.00000039161117, z: -0.00000018047854, w: 0.90518224}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1773,7 +1773,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825130883}
-  m_LocalRotation: {x: 0.51380324, y: 0.0029557552, z: -0.0017698685, w: 0.85790116}
+  m_LocalRotation: {x: 0.51380336, y: 0.0029557378, z: -0.0017698578, w: 0.8579011}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1863,7 +1863,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.513803, y: 0.0029546537, z: -0.0017695624, w: 0.85790133}
+  m_LocalRotation: {x: 0.5138032, y: 0.0029546532, z: -0.0017695631, w: 0.8579012}
   m_LocalPosition: {x: 0.4472171, y: 19.304646, z: -18.91097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3476,6 +3476,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194228}
+    - target: {fileID: 919132147522786388, guid: d7f17621c30525b429ad23480d633e51, type: 3}
+      propertyPath: thirdPersonCamera
+      value: 
+      objectReference: {fileID: 2117575352}
     - target: {fileID: 919132147522786388, guid: d7f17621c30525b429ad23480d633e51, type: 3}
       propertyPath: thridPersonCamera
       value: 

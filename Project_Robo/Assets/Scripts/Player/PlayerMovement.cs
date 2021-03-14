@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 //NEED THIS TO BE ABLE TO USE ANY KIND OF REWIRD FEATURES
-using Rewired; 
+using Rewired;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform cam;
     public Animator anim;
     public bool isInAMenu;  // Is a bool that checks if the player is busy
+    public CinemachineFreeLook thridPersonCamera;    // Reference to the ThirdPersonCamera
 
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
@@ -46,10 +48,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");//negative 1 - 1
-        float vertical = Input.GetAxisRaw("Vertical");//negative 1 - 1
+        float horizontal = Input.GetAxisRaw("Horizontal"); // negative 1 - 1
+        float vertical = Input.GetAxisRaw("Vertical"); // negative 1 - 1
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+        // If moving and not in a menu
         if (direction.magnitude >= 0.1f && isInAMenu == false)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Moveable Node
   - Goal Node
+  - TaskList
   layers:
   - Default
   - TransparentFX

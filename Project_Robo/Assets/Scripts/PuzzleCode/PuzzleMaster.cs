@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PuzzleMaster : MonoBehaviour
 {
-
+    // Inspector fields
     [SerializeField] public GameObject victory;
+    [SerializeField] private AudioClip puzzlePass;
 
+    // Script Communitcation
     private MoleculeNode[] nodes = new MoleculeNode[100];
     private List<MoleculeNode> allNodes = new List<MoleculeNode>();
     private List<MoleculeNode> goals = new List<MoleculeNode>();
@@ -15,9 +17,11 @@ public class PuzzleMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get an array of all MoleculeNodes in the puzzle
         nodes = GetComponentsInChildren<MoleculeNode>();
-        Debug.Log(nodes.Length);
+        //Debug.Log(nodes.Length);
 
+        // Convert Array to List for easier manipulation
         for (int i = 0; i < nodes.Length; i++)
         {
             if (nodes[i].GetType() == typeof(MoleculeNode))
@@ -27,6 +31,7 @@ public class PuzzleMaster : MonoBehaviour
                 break;
         }
 
+        // Get a list of specifically goal nodes
         for (int i = 0; i < allNodes.Count; i++)
         {
             if (allNodes[i].nodeType == "goalBasic")
@@ -37,6 +42,7 @@ public class PuzzleMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check to see if the puzzle has been completed
         bool clearCheck = true;
 
         for (int i = 0; i < allNodes.Count; i++)
@@ -49,21 +55,27 @@ public class PuzzleMaster : MonoBehaviour
             IsComplete();
     }
 
+    // Get method for allNodes
+    public List<MoleculeNode> GetNodes()
+    {
+        return allNodes;
+    }
+
+    // Nearby nodes returns a list of all nodes in the puzzle that within one particular node's nearbyDetector
     public List<MoleculeNode> nearbyNodes(MoleculeNode node)
     {
+
         List<MoleculeNode> nodeList = new List<MoleculeNode>();
-        int connectedNodes = 0;
 
         for (int i = 0; i < allNodes.Count; i++)
         {
-            
+            // Only adds a node to the list if the node is not moving and if both nodes are touching each other
             if (allNodes[i] != node && !allNodes[i].moving)
             {
                 if (node.nearbyDetector.GetComponent<Collider2D>().IsTouching(allNodes[i].GetComponent<Collider2D>()) &&
                     allNodes[i].nearbyDetector.GetComponent<Collider2D>().IsTouching(node.GetComponent<Collider2D>()))
                 {
                     nodeList.Add(allNodes[i]);
-                    connectedNodes++;
                 }
             }
         }
@@ -72,12 +84,18 @@ public class PuzzleMaster : MonoBehaviour
         return nodeList;
     }
 
+    // When the puzzle is complete, this method shows the victory text and plays the puzzlePass sound clip
     void IsComplete()
     {
         if (!victory.activeSelf)
         {
             victory.SetActive(true);
             isComplete = true;
+
+            if (puzzlePass != null)
+            {
+                AudioSource.PlayClipAtPoint(puzzlePass, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+            }
         }
     }
 }

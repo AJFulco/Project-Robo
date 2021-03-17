@@ -6,6 +6,7 @@ using Rewired;
 
 public class PuzzleUI : MonoBehaviour
 {
+    // Mandatory Rewired stuff
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
     private Rewired.Player player;
@@ -26,35 +27,78 @@ public class PuzzleUI : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] public List<GameObject> puzzles;
-    public int currentPuzzle = 0;
+    // Inspector variables
+    [SerializeField] public List<PuzzleObject> puzzleObjects;
+    [SerializeField] public List<PuzzleMaster> puzzles;
     [SerializeField] public GameObject holder;
+    [SerializeField] public Text puzzleNearText;
+    [SerializeField] private AudioClip puzzleStart;
+    public PlayerMovement playerMovement; // Get reference to the PlayerMovement
+
+    public int currentPuzzle = 0;
+    public bool nearPuzzle = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Hide all puzzles by default
         if (puzzles.Count > 0)
         {
             for (int i = 0; i < puzzles.Count; i++)
-                puzzles[i].SetActive(false);
+                puzzles[i].gameObject.SetActive(false);
         }
 
+        // Hide the puzzle holder by default
         holder.SetActive(false);
-        puzzles[0].SetActive(true);
+
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();  
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // If the player is near a puzzle and presses Interact, display that puzzle
+        if (nearPuzzle && player.GetButtonDown("Interact"))
+            togglePuzzle();
+
+        //Debug.Log(player.GetCurrentInputSources("Horizontal").Count);
     }
 
-    public void togglePuzzle1()
+    // Displays the currently active puzzle to the player, or hides it if the puzzle was already being shown
+    public void togglePuzzle()
     {
+        // Hides the holder if it was active
         if (holder.activeSelf)
+        {
             holder.SetActive(false);
-        else
+            playerMovement.speed = 6;
+            playerMovement.isInAMenu = false;
+        }
+        else // Displays the puzzle if it was not displayed already
+        {
+            if (puzzleStart != null)
+            {
+                AudioSource.PlayClipAtPoint(puzzleStart, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+            }
+
             holder.SetActive(true);
+            playerMovement.isInAMenu = true;
+            //playerMovement.speed = 0;
+        }
+
+        // Hides the nearbyPuzzle text when the player opens a puzzle and vice-versa
+        if (puzzleNearText.gameObject.activeSelf)
+            puzzleNearText.gameObject.SetActive(false);
+        else
+            puzzleNearText.gameObject.SetActive(true);
+
+        for (int i = 0; i < puzzles.Count; i++)
+        {
+            if (i != currentPuzzle)
+                puzzles[i].gameObject.SetActive(false);
+            else
+                puzzles[i].gameObject.SetActive(true);
+        }
     }
 
     public void exitPuzzle()
@@ -63,6 +107,30 @@ public class PuzzleUI : MonoBehaviour
             holder.SetActive(false);;
     }
 
+    // Updates the color of the task in the task list once the puzzle has been solved
+    public void UpdateTaskColor(PuzzleMaster solved)
+    {
+        int id = -1;
+
+        // Get the index of the PuzzleMaster that was passed in
+        for (int i = 0; i < puzzles.Count; i++)
+        {
+            if (puzzles[i] == solved)
+                id = i;
+        }
+
+        // Change the color of the task in the taskList that matches the id
+        if (id != -1)
+        {
+            for (int i = 0; i < puzzleObjects.Count; i++)
+            {
+                if (puzzleObjects[i].puzzleID == id)
+                    puzzleObjects[i].taskText.color = new Color(100, 255, 100);
+            }
+        }
+    }
+
+    // Deprecated Debug code, could still be useful for testing some puzzles, but placing a PuzzleObject is likely easier
     public void HandlePuzzleSwitching(string direction)
     {
         if (!holder.activeSelf)
@@ -72,8 +140,8 @@ public class PuzzleUI : MonoBehaviour
         {
             if (currentPuzzle - 1 >= 0)
             {
-                puzzles[currentPuzzle].SetActive(false);
-                puzzles[currentPuzzle - 1].SetActive(true);
+                puzzles[currentPuzzle].gameObject.SetActive(false);
+                puzzles[currentPuzzle - 1].gameObject.SetActive(true);
                 currentPuzzle--;
             }
         }
@@ -82,8 +150,8 @@ public class PuzzleUI : MonoBehaviour
         {
             if (puzzles[currentPuzzle].GetComponent<PuzzleMaster>().isComplete && currentPuzzle + 1 < puzzles.Count)
             {
-                puzzles[currentPuzzle].SetActive(false);
-                puzzles[currentPuzzle + 1].SetActive(true);
+                puzzles[currentPuzzle].gameObject.SetActive(false);
+                puzzles[currentPuzzle + 1].gameObject.SetActive(true);
                 currentPuzzle++;
             } 
         }

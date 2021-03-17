@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+
+/* 
+ * Do we even need this script anymore? I could really just move the exitPuzzle command to PuzzleUI and it should work just the same. 
+ * Everything that was here was commented out for a while, so it clearly wasn't needed.
+*/
+
 public class PuzzleInteraction : MonoBehaviour
 {
+    // Mandatory Rewired Stuff
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
     private Rewired.Player player;
@@ -40,28 +47,12 @@ public class PuzzleInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (player.GetButtonDown("ShowPuzzle"))
-        {
-            UI.togglePuzzle();
-            playerMovement.isInAMenu = true;    // Added to prevent player movement when the puzzel UI is showing
-
-        }
-        */
-
+        // The player can press escape to leave a puzzle
         if (player.GetButtonDown("Exit"))
         {
             UI.exitPuzzle();
             //playerMovement.isInAMenu = false;   // Added to re-enable the player movement
         }
-
-        /*
-        if (player.GetButtonDown("PuzzlePrevious"))
-            UI.HandlePuzzleSwitching("previous");
-
-        if (player.GetButtonDown("PuzzleNext"))
-            UI.HandlePuzzleSwitching("next");
-            */
     }
 
 

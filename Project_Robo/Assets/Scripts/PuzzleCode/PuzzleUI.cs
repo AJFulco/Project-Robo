@@ -107,16 +107,19 @@ public class PuzzleUI : MonoBehaviour
             holder.SetActive(false);;
     }
 
+    // Updates the color of the task in the task list once the puzzle has been solved
     public void UpdateTaskColor(PuzzleMaster solved)
     {
         int id = -1;
 
+        // Get the index of the PuzzleMaster that was passed in
         for (int i = 0; i < puzzles.Count; i++)
         {
             if (puzzles[i] == solved)
                 id = i;
         }
 
+        // Change the color of the task in the taskList that matches the id
         if (id != -1)
         {
             for (int i = 0; i < puzzleObjects.Count; i++)
@@ -127,6 +130,7 @@ public class PuzzleUI : MonoBehaviour
         }
     }
 
+    // Deprecated Debug code, could still be useful for testing some puzzles, but placing a PuzzleObject is likely easier
     public void HandlePuzzleSwitching(string direction)
     {
         if (!holder.activeSelf)

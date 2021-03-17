@@ -8,7 +8,7 @@ using Rewired;
 
 public class PuzzleObject : MonoBehaviour
 {
-
+    // Mandatory Rewird stuff
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
     private Rewired.Player player;
@@ -29,38 +29,46 @@ public class PuzzleObject : MonoBehaviour
     }
     #endregion
 
+    // Inspector fields
     [SerializeField] private GameObject selfObject;
     [SerializeField] private GameObject placementCube;
     [SerializeField] private Text taskTextPrefab;
     [SerializeField] public int puzzleID;
     [SerializeField] public string taskName = "Observe the Monitor";
+
+    // Script Communication
     public GameObject taskHolder;
     public Text taskText;
+    private PuzzleUI UI = null;
 
+    // Managment Variables
     public bool cleared = false;
     public bool nearThis = false;
-
-    private PuzzleUI UI = null;
 
 
 
     // Start is called before the first frame update
     void Start()
     { 
+        // Script Communication
         UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
 
+        // Instantiate the visible object of the PuzzleObject
         if (selfObject != null)
         {
             Instantiate(selfObject, transform.position, transform.rotation, transform);
         }
 
+        // Destroy the base placementCube
         if (placementCube != null)
         {
             Destroy(placementCube.gameObject);
         }
 
+        // Script Communication
         taskHolder = GameObject.FindGameObjectWithTag("TaskList");
 
+        // Place the text for this task in the TaskList
         if (taskHolder != null)
         {
             taskText = Instantiate(taskTextPrefab, taskHolder.transform);
@@ -74,6 +82,7 @@ public class PuzzleObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check to see if the puzzle connected to this PuzzleObject has been completed
         if (UI.puzzles[puzzleID].isComplete)
         {
             cleared = true;
@@ -83,6 +92,7 @@ public class PuzzleObject : MonoBehaviour
             cleared = false;
     }
 
+    // When the player approaches a PuzzleObject, display a prompt to the player
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -95,11 +105,14 @@ public class PuzzleObject : MonoBehaviour
         }
     }
 
+    // Change the text that is displayed to the player based both on the controller they are using and whether the connected puzzle has been completed
     public void OnTriggerStay(Collider other)
     {
+        // Check to see if a player is using a mouse or keyboard
         if (player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Keyboard>() ||
             player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Mouse>())
         {
+            // Check to see if the puzzle has been completed
             if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
                 UI.puzzleNearText.text = "This task has been completed. Press \"E\" to display it.";
             else
@@ -107,6 +120,7 @@ public class PuzzleObject : MonoBehaviour
         }
         else
         {
+            // Check to see if the puzzle has been completed
             if (UI.puzzles[puzzleID].GetComponent<PuzzleMaster>().isComplete)
                 UI.puzzleNearText.text = "This task has been completed. Press \"X\" to display it.";
             else
@@ -114,6 +128,7 @@ public class PuzzleObject : MonoBehaviour
         }
     }
 
+    // When the player walks away from a PuzzleObject, stop displaying a prompt to the player
     public void OnTriggerExit(Collider other)
     {
         UI.currentPuzzle = -1;

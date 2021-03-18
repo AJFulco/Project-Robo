@@ -7,8 +7,9 @@ using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // -- Declared Variables -- //
     public CharacterController controller;
-    public float speed = 6f;    // Player movement speed
+    public float speed = 15f;    // Player movement speed
     public float turnSmoothTime = 0.3f;
     float turnSmoothVelocity;
     public Transform cam;   // Reference to the Main Camera
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
     private int cameraYAxisMaxSpeed = 10;
     private int cameraXAxisMaxSpeed = 300;
+    // -- -- //
 
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
@@ -37,14 +39,10 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    // CHRIS CODE
-    private PuzzleUI UI = null;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
+
     }
 
     // Update is called once per frame
@@ -86,12 +84,13 @@ public class PlayerMovement : MonoBehaviour
             thirdPersonCamera.m_XAxis.m_MaxSpeed = 0;
         }
 
-        
+        /*
         //Example of Rewired code
         if (player.GetButtonDown("Action")) //in the "" you write the name of the action you labled in the Rewired Input Manager
         {
             //notice how we used "player" instead of "Input"
             return;
         }
+        */
     }
 }

@@ -71,7 +71,6 @@ public class PuzzleUI : MonoBehaviour
         if (holder.activeSelf)
         {
             holder.SetActive(false);
-            playerMovement.speed = 6;
             playerMovement.isInAMenu = false;
         }
         else // Displays the puzzle if it was not displayed already
@@ -83,7 +82,6 @@ public class PuzzleUI : MonoBehaviour
 
             holder.SetActive(true);
             playerMovement.isInAMenu = true;
-            //playerMovement.speed = 0;
         }
 
         // Hides the nearbyPuzzle text when the player opens a puzzle and vice-versa

@@ -7,9 +7,10 @@ using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // -- Declared Variables -- //
     public CharacterController controller;
-    public float speed = 6f;    // Player movement speed
-    public float turnSmoothTime = 0.3f;
+    public float speed = 15f;    // Player movement speed
+    public float turnSmoothTime = 0.3f;     // Smooth the player turning
     float turnSmoothVelocity;
     public Transform cam;   // Reference to the Main Camera
     public Animator anim;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
     private int cameraYAxisMaxSpeed = 10;
     private int cameraXAxisMaxSpeed = 300;
+    // -- -- //
 
     #region Rewired Stuff
     //Here, we establish what a name that we will use instead of "Input" 
@@ -37,21 +39,17 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    // CHRIS CODE
-    private PuzzleUI UI = null;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal"); // negative 1 - 1
-        float vertical = Input.GetAxisRaw("Vertical"); // negative 1 - 1
+        float horizontal = Input.GetAxisRaw("Horizontal"); // Old Unity input system, negative 1 - 1
+        float vertical = Input.GetAxisRaw("Vertical"); // Old Unity input system, negative 1 - 1
 
         // Stop mouse-camera movement if in a puzzle menu
         if (isInAMenu == false)
@@ -64,12 +62,11 @@ public class PlayerMovement : MonoBehaviour
             // Allow movement
             if (direction.magnitude >= 0.1f)
             {
+                // Have the player point in the direction they are moving
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
                 Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
                 anim.SetBool("isWalking", true);
@@ -86,12 +83,13 @@ public class PlayerMovement : MonoBehaviour
             thirdPersonCamera.m_XAxis.m_MaxSpeed = 0;
         }
 
-        
+        /*
         //Example of Rewired code
         if (player.GetButtonDown("Action")) //in the "" you write the name of the action you labled in the Rewired Input Manager
         {
             //notice how we used "player" instead of "Input"
             return;
         }
+        */
     }
 }

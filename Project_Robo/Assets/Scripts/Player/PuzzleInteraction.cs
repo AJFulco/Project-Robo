@@ -43,7 +43,7 @@ public class PuzzleInteraction : MonoBehaviour
     {
         UI = GameObject.Find("PuzzleReadyCanvas").GetComponent<PuzzleUI>();
     }
-
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -54,6 +54,5 @@ public class PuzzleInteraction : MonoBehaviour
             //playerMovement.isInAMenu = false;   // Added to re-enable the player movement
         }
     }
-
-
+    */
 }

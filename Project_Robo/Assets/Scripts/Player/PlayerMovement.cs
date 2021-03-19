@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // -- Declared Variables -- //
     public CharacterController controller;
     public float speed = 15f;    // Player movement speed
-    public float turnSmoothTime = 0.3f;
+    public float turnSmoothTime = 0.3f;     // Smooth the player turning
     float turnSmoothVelocity;
     public Transform cam;   // Reference to the Main Camera
     public Animator anim;
@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal"); // negative 1 - 1
-        float vertical = Input.GetAxisRaw("Vertical"); // negative 1 - 1
+        float horizontal = Input.GetAxisRaw("Horizontal"); // Old Unity input system, negative 1 - 1
+        float vertical = Input.GetAxisRaw("Vertical"); // Old Unity input system, negative 1 - 1
 
         // Stop mouse-camera movement if in a puzzle menu
         if (isInAMenu == false)
@@ -62,12 +62,11 @@ public class PlayerMovement : MonoBehaviour
             // Allow movement
             if (direction.magnitude >= 0.1f)
             {
+                // Have the player point in the direction they are moving
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
                 Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
                 anim.SetBool("isWalking", true);

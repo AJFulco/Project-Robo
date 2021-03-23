@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     public bool isInAMenu;  // Is a bool that checks if the player is busy
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
-    private int cameraYAxisMaxSpeed = 10;
-    private int cameraXAxisMaxSpeed = 300;
+    private float cameraYAxisMaxSpeed;
+    private float cameraXAxisMaxSpeed;
     // -- -- //
 
     #region Rewired Stuff
@@ -42,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        cameraYAxisMaxSpeed = thirdPersonCamera.m_YAxis.m_MaxSpeed;
+        cameraXAxisMaxSpeed = thirdPersonCamera.m_XAxis.m_MaxSpeed;
     }
 
     // Update is called once per frame

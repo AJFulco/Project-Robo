@@ -18,6 +18,19 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
     private float cameraYAxisMaxSpeed;
     private float cameraXAxisMaxSpeed;
+    public Vector3 direction;
+    public Vector3 moveDir; 
+
+
+    [Space(2)]
+    [Header("Gravity Stuff")]
+    //detecting the ground and making the player know when it is not grounded. 
+    [SerializeField] private float gravity; //the strengh of the player gravity.
+    public LayerMask whatIsGround; //A specific layer we get intel from
+    public Transform groundPoint; //empty game object used to detect the ground
+    private bool isGrounded; //if this is true the player is on the ground
+    public float groundDistance; //how far the player check to see if it is on the ground 
+
     // -- -- //
 
     #region Rewired Stuff
@@ -49,17 +62,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check to see of the player is on the ground. 
+        isGrounded = Physics.CheckSphere(groundPoint.position, groundDistance, whatIsGround);
+        Debug.Log("the grounded value is " + isGrounded);
+
+        moveDir.y += gravity * Time.deltaTime; //this make the player do the gravity thing. 
+
         float horizontal = Input.GetAxisRaw("Horizontal"); // Old Unity input system, negative 1 - 1
         float vertical = Input.GetAxisRaw("Vertical"); // Old Unity input system, negative 1 - 1
 
         // Stop mouse-camera movement if in a puzzle menu
         if (isInAMenu == false)
         {
-            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            //Movement and gravity code. 
+            direction = new Vector3(horizontal, 0f, vertical).normalized;
+
             // Allow camera movement
             thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraYAxisMaxSpeed;
             thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraXAxisMaxSpeed;
 
+            
             // Allow movement
             if (direction.magnitude >= 0.1f)
             {
@@ -67,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
+                moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
                 anim.SetBool("isWalking", true);
@@ -76,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 anim.SetBool("isWalking", false);
             }
+            
+            
         }
         else
         {

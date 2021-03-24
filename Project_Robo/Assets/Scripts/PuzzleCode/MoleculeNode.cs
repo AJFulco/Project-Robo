@@ -57,6 +57,9 @@ public class MoleculeNode : MonoBehaviour
     public CursorFollow follow = null;
     public Collider2D collide = null;
 
+    // Counter for shaking
+    public int shaking = 0;
+
     // Constant for Color checking
     private static float delta = 0.001f;
 
@@ -133,6 +136,27 @@ public class MoleculeNode : MonoBehaviour
 
 
         satisfied = isSatisfied();
+
+        // Shaking code
+        if (shaking > 0 && !moving)
+        {
+            if (shaking % 20 >= 10)
+            {
+                rect.offsetMax = new Vector2(rect.offsetMax.x + 1, rect.offsetMax.y);
+                rect.offsetMin = new Vector2(rect.offsetMin.x + 1, rect.offsetMin.y);
+                shaking--;
+            }
+            else
+            {
+                rect.offsetMax = new Vector2(rect.offsetMax.x - 1, rect.offsetMax.y);
+                rect.offsetMin = new Vector2(rect.offsetMin.x - 1, rect.offsetMin.y);
+                shaking--;
+            }
+        }
+        else
+        {
+            thisNode.color = new Color(thisNode.color.r, thisNode.color.g, thisNode.color.b, 1);
+        }
     }
 
     // This code was originally larger, but motion was simplified by a lot. I'm going to leave it separate for now in case it has to change later
@@ -275,4 +299,6 @@ public class MoleculeNode : MonoBehaviour
         else
             return false;
     }
+
+
 }

@@ -18,8 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
     private float cameraYAxisMaxSpeed;
     private float cameraXAxisMaxSpeed;
-    public Vector3 direction;
-    public Vector3 moveDir; 
+    
+    //I dont know which vector 3 does what, but you need these to make the character 
+    //move with the camera n' stuff. 
+    public Vector3 direction; // a vector three your need for your camera angle stuff
+    public Vector3 moveDir;  //a Vector 3 you need to make the player move.
 
 
     [Space(2)]
@@ -30,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundPoint; //empty game object used to detect the ground
     private bool isGrounded; //if this is true the player is on the ground
     public float groundDistance; //how far the player check to see if it is on the ground 
-
+    private Vector3 gravDir; //gravity direction. Vector 3 that I need to make gravity!
     // -- -- //
 
     #region Rewired Stuff
@@ -59,14 +62,9 @@ public class PlayerMovement : MonoBehaviour
         cameraXAxisMaxSpeed = thirdPersonCamera.m_XAxis.m_MaxSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //check to see of the player is on the ground. 
-        isGrounded = Physics.CheckSphere(groundPoint.position, groundDistance, whatIsGround);
-        Debug.Log("the grounded value is " + isGrounded);
+    private void FixedUpdate(){
 
-        moveDir.y += gravity * Time.deltaTime; //this make the player do the gravity thing. 
+        //moveDir.y += gravity * Time.deltaTime; //this make the player do the gravity thing. 
 
         float horizontal = Input.GetAxisRaw("Horizontal"); // Old Unity input system, negative 1 - 1
         float vertical = Input.GetAxisRaw("Vertical"); // Old Unity input system, negative 1 - 1
@@ -81,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraYAxisMaxSpeed;
             thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraXAxisMaxSpeed;
 
-            
+
             // Allow movement
             if (direction.magnitude >= 0.1f)
             {
@@ -91,15 +89,15 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
-
+                
                 anim.SetBool("isWalking", true);
             }
             else
             {
                 anim.SetBool("isWalking", false);
             }
-            
-            
+
+
         }
         else
         {
@@ -116,5 +114,31 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         */
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        #region Player Gravity Shit
+        //check to see of the player is on the ground. 
+        isGrounded = Physics.CheckSphere(groundPoint.position, groundDistance, whatIsGround);
+        Debug.Log("the grounded value is " + isGrounded);
+
+        //update how much gravity should be applied to the player so if they fall it looks right
+        gravDir.y += gravity * Time.deltaTime;
+
+        //Apply the updated gravity info to the charaCon Comp so he falls.
+        controller.Move(gravDir * Time.deltaTime);
+        controller.Move(gravDir * speed * Time.deltaTime);
+
+        //If the player is grounded keep the gravity strenght at -2 so he doesnt build up
+        //too much speed on the ground and also so he doesn't eventually fall through
+        //the floor.
+        if (isGrounded && gravDir.y < 0)
+        {
+            gravDir.y = -2f;
+        }
+        #endregion
     }
 }

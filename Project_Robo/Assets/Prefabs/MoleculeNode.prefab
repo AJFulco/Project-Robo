@@ -149,12 +149,13 @@ MonoBehaviour:
   ruleMet: 0
   canMove: 1
   numConnections: 2
-  nodeColor: {r: 1, g: 0, b: 0, a: 1}
+  nodeColor: {r: 0.92941177, g: 0.11372549, b: 0.19607843, a: 1}
   nodeType: basic
   thisNode: {fileID: 6606368738853668361}
   cursor: {fileID: 0}
   triangle: {fileID: 21300000, guid: 37f24a0819508144fa6ccee2f156a3f5, type: 3}
   spikes: {fileID: 21300000, guid: bd0c2933422d4244fa78abd60913c8d5, type: 3}
+  triangleSpikes: {fileID: 21300000, guid: 047b0313f9b79cb4681999c5b52eba5b, type: 3}
   nearbyDetector: {fileID: 2426007120196773154}
   connectorPrefab: {fileID: -7983890082785867312, guid: 75b1b1b151f24ae42b8562a4edd25520, type: 3}
   nodeConnect: {fileID: 8300000, guid: e081a2633ca8315438a3a08fb8b8c51c, type: 3}
@@ -165,6 +166,7 @@ MonoBehaviour:
   master: {fileID: 0}
   follow: {fileID: 0}
   collide: {fileID: 0}
+  shaking: 0
 --- !u!58 &-5862405896240253075
 CircleCollider2D:
   m_ObjectHideFlags: 0

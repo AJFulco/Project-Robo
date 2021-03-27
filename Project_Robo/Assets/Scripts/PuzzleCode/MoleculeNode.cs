@@ -41,6 +41,7 @@ public class MoleculeNode : MonoBehaviour
     [SerializeField] public Image cursor;
     [SerializeField] public Sprite triangle;
     [SerializeField] public Sprite spikes;
+    [SerializeField] public Sprite triangleSpikes;
     [SerializeField] public GameObject nearbyDetector;
     [SerializeField] public Connector connectorPrefab;
     [SerializeField] private AudioClip nodeConnect;
@@ -92,6 +93,11 @@ public class MoleculeNode : MonoBehaviour
         if (nodeType == "spiked")
         {
             thisNode.sprite = spikes;
+        }
+
+        if (nodeType == "spiked" && numConnections == 3)
+        {
+            thisNode.sprite = triangleSpikes;
         }
     }
 

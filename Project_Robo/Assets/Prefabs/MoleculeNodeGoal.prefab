@@ -149,7 +149,7 @@ MonoBehaviour:
   ruleMet: 0
   canMove: 0
   numConnections: 1
-  nodeColor: {r: 1, g: 0, b: 0, a: 1}
+  nodeColor: {r: 0.92941177, g: 0.11372549, b: 0.19607843, a: 1}
   nodeType: goalBasic
   thisNode: {fileID: 2610489013653416553}
   cursor: {fileID: 0}
@@ -165,6 +165,7 @@ MonoBehaviour:
   master: {fileID: 0}
   follow: {fileID: 0}
   collide: {fileID: 0}
+  shaking: 0
 --- !u!58 &2739661913382618540
 CircleCollider2D:
   m_ObjectHideFlags: 0

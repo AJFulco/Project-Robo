@@ -11,6 +11,15 @@ public class MainMenu : MonoBehaviour
     public AudioMixer audioMixer;
     // -- -- //
 
+    [Space(2)]
+    [Header("Outside References")]
+    [SerializeField] private LevelManager levelMan = null; //the level manager we need refernce too.
+
+    void Awake() {
+        //find and assign the level manager so we can manipulate it form this script.    
+        levelMan = FindObjectOfType<LevelManager>().GetComponent<LevelManager>(); 
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +32,9 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Loading the first scene...");
-        mainMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(false);
+        //mainMenuUI.SetActive(false);
+        //optionsMenuUI.SetActive(false);
+        levelMan.GameState = 1;
         Time.timeScale = 1;
 
     } // End of PlayGame()

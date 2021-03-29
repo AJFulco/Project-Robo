@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     /// We can build on top of this more as the we add more stuff. 
     /// </summary>
     public int GameState = 0; //this is an int that will be used to keep track of what stat the game is in. 
-   
+
     [Space(2)]
     [Header("References")]
     //the parts of the game that we will be manipulating with this script. 
@@ -20,6 +20,10 @@ public class LevelManager : MonoBehaviour
     public GameObject pauseMenu = null;
     public GameObject puzzleUI = null; //guess what this is?
     public PlayerMovement thePlayer = null;
+
+    [Space(2)]
+    [Header("Camera Stuff")]
+    public GameObject[] virtualCams; //the collection of virtual cameras. Uses the game state int to change. 
 
     // Start is called before the first frame update
     void Start()
@@ -31,17 +35,23 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         switch(GameState) {
-            case 0:
+            case 0: //if this is 0 we are in the main menu code.
                 mainMenu.SetActive(true);
                 pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movment code 
+                thePlayer.enabled = false;
+                virtualCams[0].SetActive(true);
+                virtualCams[1].SetActive(false);
                 break;
             case 1:
-                mainMenu.SetActive(true);
+                mainMenu.SetActive(false);
                 pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code
+                thePlayer.enabled = true;
+                virtualCams[1].SetActive(true);
+                virtualCams[0].SetActive(false);
                 break;
             case 2:
                 mainMenu.SetActive(true);

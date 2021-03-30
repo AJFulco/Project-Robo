@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         #region Player Gravity Shit
         //check to see of the player is on the ground. 
         isGrounded = Physics.CheckSphere(groundPoint.position, groundDistance, whatIsGround);
-        Debug.Log("the grounded value is " + isGrounded);
+        //Debug.Log("the grounded value is " + isGrounded);
 
         //update how much gravity should be applied to the player so if they fall it looks right
         gravDir.y += gravity * Time.deltaTime;

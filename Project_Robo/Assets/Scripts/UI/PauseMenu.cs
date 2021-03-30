@@ -28,6 +28,7 @@ public class PauseMenu : MonoBehaviour
         // If ESC is pressed, pause/un-pause the game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("escape key?");
             if (gameIsPaused)
             {
                 Resume();

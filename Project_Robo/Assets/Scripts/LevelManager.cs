@@ -41,10 +41,12 @@ public class LevelManager : MonoBehaviour
                 puzzleUI.SetActive(false);
                 //player movment code 
                 thePlayer.enabled = false;
+                
+                //the virtual cameras 
                 virtualCams[0].SetActive(true);
                 virtualCams[1].SetActive(false);
                 break;
-            case 1:
+            case 1: //player is allowed overworld movement. 
                 mainMenu.SetActive(false);
                 pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
@@ -53,14 +55,14 @@ public class LevelManager : MonoBehaviour
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;
-            case 2:
+            case 2: //pause menue is active
                 mainMenu.SetActive(true);
                 pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code
                 break;
-            case 3:
-                mainMenu.SetActive(true);
+            case 3: //puzzle Ui is active. 
+                mainMenu.SetActive(false);
                 pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
     // -- -- //
+
+    #region Rewired Stuff
+    // Here, we establish what a name that we will use instead of "Input" 
+    private Rewired.Player player;
+    // The playerID lables which player you are, 0=P1, 1=P2, and so on.
+    public int playerId = 0;
+    // Stuff for rumble support
+    //int motorIndex0 = 0;
+    //int motorIndex1 = 1;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // If ESC is pressed, pause/un-pause the game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (player.GetButtonDown("Cancel")) // Was Input.GetButtonDwon(KeyCode.Escape)
         {
             Debug.Log("escape key?");
             if (gameIsPaused)

@@ -60,11 +60,13 @@ public class PuzzleMaster : MonoBehaviour
 
             for (int i = 0; i < allNodes.Count; i++)
             {
-                if (allNodes[i].numConnections != allNodes[i].currentConnections)
+                if (allNodes[i].currentConnections == 0)
                     connectCheck = false;
 
-                if (!allNodes[i].ruleMet)
+                if (!allNodes[i].ruleMet || allNodes[i].currentConnections < allNodes[i].numConnections)
                     shakingNodes.Add(allNodes[i]);
+                else
+                    allNodes[i].shaking = 0;
             }
 
             if (connectCheck)

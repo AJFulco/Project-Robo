@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Connector : MonoBehaviour
 {
     // List of connectors on the second node
     private List<Connector> node2Connectors = new List<Connector>();
+
+    // This Sprite
+    [SerializeField] public List<Sprite> frames;
+    [SerializeField] private Image selfImage = null;
+    private int currentFrame = 0;
 
     // Molecule nodes this is connected to
     public MoleculeNode node1 = null;
@@ -20,7 +26,16 @@ public class Connector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentFrame < frames.Count * 2)
+        {
+            currentFrame++;
+        }
+        else
+        {
+            currentFrame = 0;
+        }
 
+        selfImage.sprite = frames[currentFrame / 2];
     }
 
     // Called by MoleculeNode to finish the connection between the two nodes

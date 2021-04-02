@@ -1443,6 +1443,7 @@ MonoBehaviour:
   mainMenuUI: {fileID: 9193371122171804533}
   optionsMenuUI: {fileID: 9193371123278499174}
   audioMixer: {fileID: 24100000, guid: 07b34ae993e5c864f8436c68df82003b, type: 2}
+  levelMan: {fileID: 0}
 --- !u!1 &9193371122171804533
 GameObject:
   m_ObjectHideFlags: 0

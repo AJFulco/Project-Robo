@@ -53,6 +53,31 @@ public class PuzzleMaster : MonoBehaviour
 
         if (clearCheck)
             IsComplete();
+        else
+        {
+            List<MoleculeNode> shakingNodes = new List<MoleculeNode>();
+            bool connectCheck = true;
+
+            for (int i = 0; i < allNodes.Count; i++)
+            {
+                if (allNodes[i].currentConnections == 0)
+                    connectCheck = false;
+
+                if (!allNodes[i].ruleMet || allNodes[i].currentConnections < allNodes[i].numConnections)
+                    shakingNodes.Add(allNodes[i]);
+                else
+                    allNodes[i].shaking = 0;
+            }
+
+            if (connectCheck)
+            {
+                for (int i = 0; i < shakingNodes.Count; i++)
+                {
+                    if (shakingNodes[i].shaking == 0)
+                        shakingNodes[i].shaking = 120;
+                }
+            }
+        }
     }
 
     // Get method for allNodes

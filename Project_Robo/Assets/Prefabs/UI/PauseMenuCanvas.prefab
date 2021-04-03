@@ -1325,7 +1325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6886379805758574588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1423,6 +1423,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 6886379807134492122}
   optionsMenuUI: {fileID: 6886379806568034150}
   audioMixer: {fileID: 24100000, guid: 07b34ae993e5c864f8436c68df82003b, type: 2}
+  playerId: 0
 --- !u!1 &6886379806035956146
 GameObject:
   m_ObjectHideFlags: 0

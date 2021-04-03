@@ -16,8 +16,6 @@ public class LevelManager : MonoBehaviour
     [Space(2)]
     [Header("References")]
     //the parts of the game that we will be manipulating with this script. 
-    public GameObject mainMenu = null;
-    public GameObject pauseMenu = null;
     public GameObject puzzleUI = null; //guess what this is?
     public PlayerMovement thePlayer = null;
 
@@ -28,27 +26,24 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(GameState) {
+        switch (GameState)
+        {
             case 0: //if this is 0 we are in the main menu code.
-                mainMenu.SetActive(true);
-                pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movment code 
                 thePlayer.enabled = false;
-                
+
                 //the virtual cameras 
                 virtualCams[0].SetActive(true);
                 virtualCams[1].SetActive(false);
                 break;
             case 1: //player is allowed overworld movement. 
-                mainMenu.SetActive(false);
-                pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code
                 thePlayer.enabled = true;
@@ -56,17 +51,33 @@ public class LevelManager : MonoBehaviour
                 virtualCams[0].SetActive(false);
                 break;
             case 2: //pause menue is active
-                mainMenu.SetActive(true);
-                pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code
                 break;
             case 3: //puzzle Ui is active. 
-                mainMenu.SetActive(false);
-                pauseMenu.SetActive(false);
                 puzzleUI.SetActive(false);
                 //player movement code
                 break;
         }
     }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(thePlayer);
+
+    } // End of SavePlayer()
+
+    public void LoadPlayer()
+    {
+        PlayerData playerData = SaveSystem.LoadPlayer();
+
+        Vector3 position;
+        position.x = playerData.position[0];
+        position.y = playerData.position[1];
+        position.z = playerData.position[2];
+
+        // Set the player so they start in the nearest sleeping bay
+        //transform.position = position;
+
+    } // End of LoadPlayer()
 }

@@ -15,8 +15,8 @@ public class PuzzleObject : MonoBehaviour
     //The playerID lables which player you are, 0=P1, 1=P2, and so on.
     public int playerId = 0;
     //Stuff for rumble support
-    int motorIndex0 = 0;
-    int motorIndex1 = 1;
+    //int motorIndex0 = 0;
+    //int motorIndex1 = 1;
     #endregion
 
     #region Awake

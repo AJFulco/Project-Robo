@@ -13,9 +13,15 @@ public class MenuManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
+    [SerializeField] private LevelManager levelManager = null;  // Reference to the LevelManager
 
     // -- -- //
 
+    private void Awake()
+    {
+        // Find and assign the LevelManager, so we can change the game state (for cameras switching)
+        levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +54,8 @@ public class MenuManager : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Loading the first save...");
+        levelManager.GameState = 1;
+        mainMenuUI.SetActive(false);
         Time.timeScale = 1;
 
     } // End of PlayGame()
@@ -73,6 +81,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         Debug.Log("Loading the Main Menu...");
+        levelManager.GameState = 0;
 
     } // End of LoadMainMenu()
 

@@ -90,6 +90,7 @@ public class PuzzleUI : MonoBehaviour
         else
             puzzleNearText.gameObject.SetActive(true);
 
+        //Hide all completed puzzles from displaying in the puzzle node on play.
         for (int i = 0; i < puzzles.Count; i++)
         {
             if (i != currentPuzzle)
@@ -97,6 +98,9 @@ public class PuzzleUI : MonoBehaviour
             else
                 puzzles[i].gameObject.SetActive(true);
         }
+
+        
+
     }
 
     public void exitPuzzle()
@@ -108,6 +112,7 @@ public class PuzzleUI : MonoBehaviour
     // Updates the color of the task in the task list once the puzzle has been solved
     public void UpdateTaskColor(PuzzleMaster solved)
     {
+        //A.J. Says: I don't know that this does but that's ok for now.
         int id = -1;
 
         // Get the index of the PuzzleMaster that was passed in
@@ -126,6 +131,9 @@ public class PuzzleUI : MonoBehaviour
                     puzzleObjects[i].taskText.color = new Color(100, 255, 100);
             }
         }
+
+        //A.J.'s Method of list updating.
+
     }
 
     // Deprecated Debug code, could still be useful for testing some puzzles, but placing a PuzzleObject is likely easier

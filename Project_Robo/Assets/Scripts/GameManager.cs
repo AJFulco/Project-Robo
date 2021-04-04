@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
         //Cycle switch Statement
         switch (Cycle)
         {
+            //A.J. SAYS: I understand whay you are trying to do here, but 
+            //this method is only really going to work if you want do program each
+            //individual possible playthrough session. I DON'T recomend you proceed like this. 
             case 1://The first cycle of the game!!!
                 //if (PuzzleUIScript.puzzles[0]! == null &&
                 //    PuzzleUIScript.puzzles[1]! == null &&
@@ -51,5 +54,16 @@ public class GameManager : MonoBehaviour
             case 3:
                 break;
         }
+
+
     }
+
+    #region Update Puzzle Data
+    //Run this method when you want to update the list. 
+    public void UpdatePuzzleList()
+    {
+
+    }
+    #endregion
+
 }

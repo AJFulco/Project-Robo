@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Loading the first save...");
-        levelManager.GameState = 1;
+        levelManager.playerState = 1;
         mainMenuUI.SetActive(false);
         Time.timeScale = 1;
 
@@ -81,7 +81,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         Debug.Log("Loading the Main Menu...");
-        levelManager.GameState = 0;
+        levelManager.playerState = 0;
 
     } // End of LoadMainMenu()
 

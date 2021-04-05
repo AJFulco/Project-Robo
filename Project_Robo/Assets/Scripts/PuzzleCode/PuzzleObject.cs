@@ -23,9 +23,11 @@ public class PuzzleObject : MonoBehaviour
     //Awake function is code that is executed before the Start or OnEnable functions. 
     private void Awake()
     {
-
         //THIS LINE IS CRUCIAL! IF IT IS NOT IN THE SCRIPT REWIRD WONT READ THE INPUTS FROM THE PROPER CONTROL INPUT!
         player = Rewired.ReInput.players.GetPlayer(playerId);
+
+        //find and assign the level manager
+        levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>(); 
     }
     #endregion
 
@@ -45,7 +47,7 @@ public class PuzzleObject : MonoBehaviour
     public bool cleared = false;
     public bool nearThis = false;
 
-
+    [SerializeField] private LevelManager levelManager = null;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +89,10 @@ public class PuzzleObject : MonoBehaviour
         {
             cleared = true;
             taskText.color = Color.green;
+
+            //update the completed number puzzles in the Level Manager
+            levelManager.puzzleID = puzzleID;
+            levelManager.UpdateFinishedPuzzles();
         }
         else
             cleared = false;

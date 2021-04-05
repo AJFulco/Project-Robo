@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Loading the first scene...");
         //mainMenuUI.SetActive(false);
         //optionsMenuUI.SetActive(false);
-        levelMan.GameState = 1;
+        levelMan.playerState = 1;
         Time.timeScale = 1;
 
     } // End of PlayGame()

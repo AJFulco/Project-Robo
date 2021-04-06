@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using Rewired;
 
 
@@ -14,6 +15,17 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
     [SerializeField] private LevelManager levelManager = null;  // Reference to the LevelManager
+    public PuzzleUI puzzleUI;   // Reference to the PuzzleUI script
+
+    #region Rewired Stuff
+    //Here, we establish what a name that we will use instead of "Input" 
+    private Rewired.Player player;
+    //The playerID lables which player you are, 0=P1, 1=P2, and so on.
+    public int playerId = 0;
+    //Stuff for rumble support
+    //int motorIndex0 = 0;
+    //int motorIndex1 = 1;
+    #endregion
 
     // -- -- //
 
@@ -38,8 +50,9 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         // If ESC is pressed, pause/unpause the game
-        /*if (Input.GetButtonDown(KeyCode.Escape))
+        /*if (player.GetButtonDown("(Un)Pause"))
         {
+            Debug.Log("Player hit escape...");
             if (gameIsPaused)
             {
                 Resume();

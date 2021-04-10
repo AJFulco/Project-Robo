@@ -77,7 +77,7 @@ public class PuzzleUI : MonoBehaviour
         {
             if (puzzleStart != null)
             {
-                AudioSource.PlayClipAtPoint(puzzleStart, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+                GameObject.Find("PuzzleReadyCanvas").GetComponent<AudioSource>().PlayOneShot(puzzleStart);
             }
 
             holder.SetActive(true);

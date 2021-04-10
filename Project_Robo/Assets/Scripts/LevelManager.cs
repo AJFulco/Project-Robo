@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class LevelManager : MonoBehaviour
     public int[] puzzleList; //the number of puzzles is set to 15 because I (A.J.) said so. (^-^)/ 
     public int puzzleID; //the ID number of the puzzle. (is changed by the puzzle script)
     public List<DoorBehavior> DoorList;
-    
+
     [Space(2)]
     [Header("Skybox/CubeMap Stuff")]
     //Changing the skybox / CubeMaps
@@ -48,7 +49,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -86,10 +87,12 @@ public class LevelManager : MonoBehaviour
     }
 
     #region Update Finished Puzzles
-    public void UpdateFinishedPuzzles()
+    public void UpdateFinishedPuzzles(Text taskText)
     {
         //set the value of this puzzle (whichever one matches the puzzleID) to be "1" which equals true;
-        puzzleList[puzzleID] = 1; 
+        puzzleList[puzzleID] = 1;
+
+        taskText.color = Color.green;
     }
     #endregion
 

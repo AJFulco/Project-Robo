@@ -119,7 +119,7 @@ public class PuzzleMaster : MonoBehaviour
 
             if (puzzlePass != null)
             {
-                AudioSource.PlayClipAtPoint(puzzlePass, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+                GameObject.Find("PuzzleReadyCanvas").GetComponent<AudioSource>().PlayOneShot(puzzlePass);
             }
         }
     }

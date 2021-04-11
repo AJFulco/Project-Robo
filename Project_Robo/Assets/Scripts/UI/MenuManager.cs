@@ -33,6 +33,8 @@ public class MenuManager : MonoBehaviour
     {
         // Find and assign the LevelManager, so we can change the game state (for cameras switching)
         levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
+        // Rewired stuff
+        player = Rewired.ReInput.players.GetPlayer(playerId);
     }
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         // If ESC is pressed, pause/unpause the game
-        /*if (player.GetButtonDown("(Un)Pause"))
+        if (player.GetButtonDown("(Un)Pause"))
         {
             Debug.Log("Player hit escape...");
             if (gameIsPaused)
@@ -61,7 +63,7 @@ public class MenuManager : MonoBehaviour
             {
                 Pause();
             }
-        }*/
+        }
     } // Emd of Update()
 
     public void PlayGame()

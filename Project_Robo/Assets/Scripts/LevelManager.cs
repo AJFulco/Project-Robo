@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    
+
     [Header("Tracking Ints")]
     /// <summary>
     /// 0 = Main menu
@@ -102,6 +104,12 @@ public class LevelManager : MonoBehaviour
         SaveSystem.SavePlayer(thePlayer);
 
     } // End of SavePlayer()
+
+    public void SavePlayerAndQuit()
+    {
+        SaveSystem.SavePlayer(thePlayer);
+        Application.Quit();
+    }
 
     public void LoadPlayer()
     {

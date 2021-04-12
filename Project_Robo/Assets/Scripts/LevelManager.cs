@@ -25,7 +25,10 @@ public class LevelManager : MonoBehaviour
     [Header("References")]
     //the parts of the game that we will be manipulating with this script. 
     public GameObject puzzleUI = null; //guess what this is?
-    public PlayerMovement thePlayer = null;
+    public PlayerMovement playerMovementScript = null;
+    [SerializeField] public GameObject thePlayer;
+    public MenuManager menuManagerScript;
+
 
     [Space(2)]
     [Header("Camera Stuff")]
@@ -68,7 +71,7 @@ public class LevelManager : MonoBehaviour
             case 0: //if this is 0 we are in the main menu code.
                 puzzleUI.SetActive(false);
                 //player movment code 
-                thePlayer.enabled = false;
+                playerMovementScript.enabled = false;
 
                 //the virtual cameras 
                 virtualCams[0].SetActive(true);
@@ -77,7 +80,7 @@ public class LevelManager : MonoBehaviour
             case 1: //player is allowed overworld movement. 
                 puzzleUI.SetActive(true);
                 //player movement code
-                thePlayer.enabled = true;
+                playerMovementScript.enabled = true;
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;
@@ -161,18 +164,19 @@ public class LevelManager : MonoBehaviour
     #region Save System
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(thePlayer);
+        SaveSystem.SavePlayer(playerMovementScript);
 
     } // End of SavePlayer()
 
     public void SavePlayerAndQuit()
     {
-        SaveSystem.SavePlayer(thePlayer);
+        SaveSystem.SavePlayer(playerMovementScript);
         Application.Quit();
     }
 
     public void LoadPlayer()
     {
+        Debug.Log("Trying to load the player data");
         PlayerData playerData = SaveSystem.LoadPlayer();
 
         Vector3 position;
@@ -182,6 +186,8 @@ public class LevelManager : MonoBehaviour
 
         // Set the player so they start in the nearest sleeping bay
         //transform.position = position;
+        thePlayer.transform.position = position;
+        menuManagerScript.PlayGame();
 
     } // End of LoadPlayer()
 

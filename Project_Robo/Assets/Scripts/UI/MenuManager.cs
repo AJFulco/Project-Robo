@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
         // If ESC is pressed, pause/unpause the game
         if (player.GetButtonDown("(Un)Pause"))
         {
-            Debug.Log("Player hit escape...");
+            //Debug.Log("Player hit escape...");
             if (gameIsPaused)
             {
                 Resume();
@@ -68,7 +68,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Debug.Log("Loading the first save...");
+        //Debug.Log("Loading new game...");
         levelManager.playerState = 1;
         mainMenuUI.SetActive(false);
         Time.timeScale = 1;

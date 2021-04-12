@@ -15,15 +15,11 @@ public class LevelManager : MonoBehaviour
     /// 3 = Paused game
     /// We can build on top of this more as the we add more stuff. 
     /// </summary>
+    public int progressState = 0;
     public int playerState = 0; //this is an int that will be used to keep track of what stat the game is in.
     public int Cycle = 0; //What is the playthrough number for for the player [Changes the skybox basically]
-    /// <summary>
-                          /// 0 = the start of the game
-                          /// 1 = thet part of the game after the opening
-                          /// and so on...
-                          /// </summary>
-    public int progressState = 0; 
-   
+    public int DoorSwitch = 0;
+
 
     [Space(2)]
     [Header("References")]
@@ -40,7 +36,14 @@ public class LevelManager : MonoBehaviour
     //All of the scripts we pull from
     public int[] puzzleList; //the number of puzzles is set to 15 because I (A.J.) said so. (^-^)/ 
     public int puzzleID; //the ID number of the puzzle. (is changed by the puzzle script)
-    public List<DoorBehavior> DoorList;
+    [SerializeField] public PuzzleUI PuzzleUIScript;
+    public PuzzleMaster PuzzleMasterScript;//need for the boolean isComplete
+
+
+    [Space(2)]
+    [Header("Door")]
+    // Door stuff
+    [SerializeField] public List<DoorBehavior> DoorList;
 
     [Space(2)]
     [Header("Skybox/CubeMap Stuff")]
@@ -51,7 +54,9 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Cycle++;
+        DoorSwitch++;
+        //Skybox.ge Assets/Art/Skybox Stuff/Faces/skybox blue/cubemap.png
     }
 
     // Update is called once per frame
@@ -70,7 +75,7 @@ public class LevelManager : MonoBehaviour
                 virtualCams[1].SetActive(false);
                 break;
             case 1: //player is allowed overworld movement. 
-                puzzleUI.SetActive(false);
+                puzzleUI.SetActive(true);
                 //player movement code
                 thePlayer.enabled = true;
                 virtualCams[1].SetActive(true);
@@ -86,6 +91,61 @@ public class LevelManager : MonoBehaviour
                 break;
         }
         #endregion
+
+        #region Cycle Switch Statement
+        switch (Cycle)
+        {
+            case 1: //The first cycle of the game!!!
+                switch (DoorSwitch)     // Opening doors in Cycle 1
+                {
+                    case 1: // Checking if door 1 is open
+                        #region Open Door 1 Checks
+                        //make sure they all exist
+                        if (PuzzleUIScript.puzzles[0] != null &&
+                            PuzzleUIScript.puzzles[1] != null &&
+                            PuzzleUIScript.puzzles[2] != null &&
+                            PuzzleUIScript.puzzles[3] != null)
+                        {
+                            // If all four tutorial puzzles are complete
+                            if (PuzzleUIScript.puzzles[0].isComplete &&
+                                PuzzleUIScript.puzzles[1].isComplete &&
+                                PuzzleUIScript.puzzles[2].isComplete &&
+                                PuzzleUIScript.puzzles[3].isComplete)
+                            {
+                                Debug.Log("All tutorial puzzles complete, door should open");
+                                //open the first door
+                                if (!DoorList[0].isOpen)
+                                {
+                                    DoorList[0].Open();
+                                    DoorSwitch++;
+                                }
+
+                            }
+                        }
+                        #endregion
+                        break;
+                    case 2: // Checking if all cycle 1 puzzles are complete
+                        #region Remaining Puzzles Check
+                        if (PuzzleUIScript.puzzles[4] != null)
+                        {
+                            // If all four tutorial puzzles are complete
+                            if (PuzzleUIScript.puzzles[4].isComplete)
+                            {
+                                // Set the sleeping bay trigger to active
+                                GameObject.Find("RobotCellsOpen (2)").GetComponent<BoxCollider>().enabled = true;   // This is the sleeping bay that Bitbot starts off in
+                            }
+                        }
+                        #endregion
+                        break;
+                }
+                break;
+            case 2: // The second game cycle
+                break;
+            case 3:
+                break;
+        }
+        #endregion
+
     }
 
     #region Update Finished Puzzles
@@ -124,11 +184,10 @@ public class LevelManager : MonoBehaviour
         //transform.position = position;
 
     } // End of LoadPlayer()
-    #endregion
 
-    #region New Game
-    public void NewGameStart() {
-        
+    public void NewGameStart()
+    {
+
         Cycle++; //add a value to the number of cycles.
         //Skybox.ge Assets/Art/Skybox Stuff/Faces/skybox blue/cubemap.png
 

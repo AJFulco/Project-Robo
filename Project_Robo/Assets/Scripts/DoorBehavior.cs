@@ -23,10 +23,12 @@ public class DoorBehavior : MonoBehaviour
         isOpen = true;
         Debug.Log("The Door is now OPEN!!!!!!");
         //anim.SetBool("isOpening",true);
+        
+
     }
     public void Close(){ //closes the door when called
         isOpen = false;
         Debug.Log("The Door is now Closed :(");
-       // anim.SetBool("isClosing", true);
+        //anim.SetBool("isClosing", true);
     }
 }

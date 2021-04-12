@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] position;
+    public bool[] puzzleStatus;
+    public bool[] doorStatus;
 
     public PlayerData(PlayerMovement player)
     {

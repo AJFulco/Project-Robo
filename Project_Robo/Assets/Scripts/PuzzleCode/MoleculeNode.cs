@@ -218,7 +218,7 @@ public class MoleculeNode : MonoBehaviour
                         // Play connection sound
                         if (nodeConnect != null)
                         {
-                            AudioSource.PlayClipAtPoint(nodeConnect, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
+                            GameObject.Find("PuzzleReadyCanvas").GetComponent<AudioSource>().PlayOneShot(nodeConnect, 0.3f);
                         }
                     }
 

@@ -26,7 +26,7 @@ public class Connector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentFrame < frames.Count * 2)
+        if (currentFrame < (frames.Count * 2) - 1)
         {
             currentFrame++;
         }

@@ -1,17 +1,27 @@
 fileFormatVersion: 2
-guid: f58b787207f6564448f1b44661217bd6
+guid: 9a13318952184694e8364704956a8206
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Close
-  externalObjects:
+      74: 3063218334436052979
+    second: right eye|Plane.001Action
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 40449a00be610824b864f13b9fce882e, type: 2}
+      74: 3443567849438253566
+    second: right eye|Plane.002Action.001
+  - first:
+      74: 2253240917590495624
+    second: right eye|PlaneAction
+  - first:
+      74: -3910039681755007892
+    second: left eye|Plane.001Action
+  - first:
+      74: 7500637043927797585
+    second: left eye|Plane.002Action.001
+  - first:
+      74: -7162421676299788710
+    second: left eye|PlaneAction
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -38,36 +48,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Close
-      takeName: Take 001
-      internalID: 0
-      firstFrame: 1
-      lastFrame: 60
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []

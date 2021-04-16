@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using Rewired;
 
 
@@ -14,6 +15,17 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
     [SerializeField] private LevelManager levelManager = null;  // Reference to the LevelManager
+    public PuzzleUI puzzleUI;   // Reference to the PuzzleUI script
+
+    #region Rewired Stuff
+    //Here, we establish what a name that we will use instead of "Input" 
+    private Rewired.Player player;
+    //The playerID lables which player you are, 0=P1, 1=P2, and so on.
+    public int playerId = 0;
+    //Stuff for rumble support
+    //int motorIndex0 = 0;
+    //int motorIndex1 = 1;
+    #endregion
 
     // -- -- //
 
@@ -21,6 +33,8 @@ public class MenuManager : MonoBehaviour
     {
         // Find and assign the LevelManager, so we can change the game state (for cameras switching)
         levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
+        // Rewired stuff
+        player = Rewired.ReInput.players.GetPlayer(playerId);
     }
     // Start is called before the first frame update
     void Start()
@@ -38,8 +52,9 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         // If ESC is pressed, pause/unpause the game
-        /*if (Input.GetButtonDown(KeyCode.Escape))
+        if (player.GetButtonDown("(Un)Pause"))
         {
+            //Debug.Log("Player hit escape...");
             if (gameIsPaused)
             {
                 Resume();
@@ -48,12 +63,12 @@ public class MenuManager : MonoBehaviour
             {
                 Pause();
             }
-        }*/
+        }
     } // Emd of Update()
 
     public void PlayGame()
     {
-        Debug.Log("Loading the first save...");
+        //Debug.Log("Loading new game...");
         levelManager.playerState = 1;
         mainMenuUI.SetActive(false);
         Time.timeScale = 1;

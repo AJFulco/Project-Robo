@@ -88,11 +88,10 @@ public class PuzzleObject : MonoBehaviour
         if (UI.puzzles[puzzleID].isComplete)
         {
             cleared = true;
-            taskText.color = Color.green;
 
             //update the completed number puzzles in the Level Manager
             levelManager.puzzleID = puzzleID;
-            levelManager.UpdateFinishedPuzzles();
+            levelManager.UpdateFinishedPuzzles(taskText);
         }
         else
             cleared = false;

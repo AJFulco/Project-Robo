@@ -26,6 +26,9 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
             PlayerData playerData = formatter.Deserialize(stream) as PlayerData;
+            Debug.Log(playerData.position[0]);
+            Debug.Log(playerData.position[1]);
+            Debug.Log(playerData.position[2]);
             stream.Close();
 
             return playerData;

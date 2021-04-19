@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public int Cycle = 0; //What is the playthrough number for for the player [Changes the skybox basically]
     public int DoorSwitch = 0;
 
+    private bool cycleOneScene = false;
 
     [Space(2)]
     [Header("References")]
@@ -33,6 +34,9 @@ public class LevelManager : MonoBehaviour
     [Space(2)]
     [Header("Camera Stuff")]
     public GameObject[] virtualCams; //the collection of virtual cameras. Uses the game state int to change. 
+    [Space]
+    public GameObject[] cutSceneCams; //virual cameras we can toggle on for cutscenes.
+        
 
     [Space(2)]
     [Header("Puzzle Progress Tracking")]
@@ -53,6 +57,17 @@ public class LevelManager : MonoBehaviour
     //Changing the skybox / CubeMaps
     [SerializeField] public ArrayList CubeMapArrayList = new ArrayList();
 
+    [Space(2)]
+    [Header("Sound FX")]
+    public AudioSource doorOpenedFan; //the fanfare for opening a door.
+
+    public bool inMenu;
+    public bool inCutScene;
+
+    public bool isBusy()
+    {
+        return inMenu || inCutScene;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -69,27 +84,37 @@ public class LevelManager : MonoBehaviour
         switch (playerState)
         {
             case 0: //if this is 0 we are in the main menu code.
-                puzzleUI.SetActive(false);
+                inMenu = true;
+                //puzzleUI.SetActive(false);
                 //player movment code 
                 playerMovementScript.enabled = false;
-
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 //the virtual cameras 
                 virtualCams[0].SetActive(true);
                 virtualCams[1].SetActive(false);
                 break;
             case 1: //player is allowed overworld movement. 
-                puzzleUI.SetActive(true);
+                inMenu = false;
+                //Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = false;
+                //puzzleUI.SetActive(true);
                 //player movement code
-                playerMovementScript.enabled = true;
+                if(!inCutScene)
+                    playerMovementScript.enabled = true;
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;
             case 2: //pause menue is active
-                puzzleUI.SetActive(false);
+                //puzzleUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 //player movement code
                 break;
             case 3: //puzzle Ui is active. 
-                puzzleUI.SetActive(false);
+                //puzzleUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 //player movement code
                 break;
         }
@@ -117,10 +142,9 @@ public class LevelManager : MonoBehaviour
                             {
                                 Debug.Log("All tutorial puzzles complete, door should open");
                                 //open the first door
-                                if (!DoorList[0].isOpen)
+                                if (cycleOneScene == false)
                                 {
-                                    DoorList[0].Open();
-                                    DoorSwitch++;
+                                    StartCoroutine(DoorOpenCutScene());
                                 }
 
                             }
@@ -201,5 +225,40 @@ public class LevelManager : MonoBehaviour
 
     }
     #endregion
+
+    #region Door Unlocked Cutscene
+    IEnumerator DoorOpenCutScene()
+    {
+        inCutScene = true;
+        //make player busy
+        //playerMovementScript.enabled = false;
+
+        //activate the camera for that cycle.
+        cutSceneCams[0].SetActive(true);
+        virtualCams[1].SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+        //activate the door
+        if (!DoorList[0].isOpen)
+        {
+            DoorList[0].Open();
+            DoorSwitch++;
+        }
+  
+        //play music
+        doorOpenedFan.Play();
+        yield return new WaitForSeconds(200f);
+        //toggle off camera
+        cutSceneCams[0].SetActive(true);
+        virtualCams[1].SetActive(false);
+        yield return new WaitForSeconds(1f);
+        //restore player movement
+        playerMovementScript.enabled = true;
+        inCutScene = false;
+        cycleOneScene = true;
+    }
+
+    #endregion
+
 
 }

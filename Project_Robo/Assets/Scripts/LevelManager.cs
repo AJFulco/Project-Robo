@@ -53,6 +53,12 @@ public class LevelManager : MonoBehaviour
     //Changing the skybox / CubeMaps
     [SerializeField] public ArrayList CubeMapArrayList = new ArrayList();
 
+    [Space(2)]
+    [Header("Sleeping Bays")]
+    // Sleeping Bays
+    [SerializeField] public List<GameObject> firstFlrSleepingBays;
+    [SerializeField] public List<GameObject> secondFlrSleepingBays;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +75,7 @@ public class LevelManager : MonoBehaviour
         switch (playerState)
         {
             case 0: //if this is 0 we are in the main menu code.
-                puzzleUI.SetActive(false);
+                //puzzleUI.SetActive(false);
                 //player movment code 
                 playerMovementScript.enabled = false;
 
@@ -78,18 +84,18 @@ public class LevelManager : MonoBehaviour
                 virtualCams[1].SetActive(false);
                 break;
             case 1: //player is allowed overworld movement. 
-                puzzleUI.SetActive(true);
+                //puzzleUI.SetActive(true);
                 //player movement code
                 playerMovementScript.enabled = true;
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;
             case 2: //pause menue is active
-                puzzleUI.SetActive(false);
+                //puzzleUI.SetActive(false);
                 //player movement code
                 break;
             case 3: //puzzle Ui is active. 
-                puzzleUI.SetActive(false);
+                //puzzleUI.SetActive(false);
                 //player movement code
                 break;
         }
@@ -164,14 +170,15 @@ public class LevelManager : MonoBehaviour
     #region Save System
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(playerMovementScript);
+        SaveSystem.SavePlayer(playerMovementScript, this);
 
     } // End of SavePlayer()
 
     public void SavePlayerAndQuit()
     {
-        SaveSystem.SavePlayer(playerMovementScript);
+        SaveSystem.SavePlayer(playerMovementScript, this);
         Application.Quit();
+        Debug.Log("Saving player data and quiting the game...");
     }
 
     public void LoadPlayer()

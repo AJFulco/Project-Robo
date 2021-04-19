@@ -33,6 +33,8 @@ public class LevelManager : MonoBehaviour
     [Space(2)]
     [Header("Camera Stuff")]
     public GameObject[] virtualCams; //the collection of virtual cameras. Uses the game state int to change. 
+    [Space]
+    public GameObject[] cutSceneCams;
 
     [Space(2)]
     [Header("Puzzle Progress Tracking")]
@@ -59,6 +61,18 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public List<GameObject> firstFlrSleepingBays;
     [SerializeField] public List<GameObject> secondFlrSleepingBays;
 
+    [Space]
+    public AudioSource doorOpenedFan = null;
+
+    private bool cycleOneScene = false;
+
+    public bool inMenu;
+    public bool inCutScene;
+
+    public bool isBusy()
+    {
+        return inMenu || inCutScene;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -122,11 +136,9 @@ public class LevelManager : MonoBehaviour
                                 PuzzleUIScript.puzzles[3].isComplete)
                             {
                                 Debug.Log("All tutorial puzzles complete, door should open");
-                                //open the first door
-                                if (!DoorList[0].isOpen)
+                                if (cycleOneScene == false)
                                 {
-                                    DoorList[0].Open();
-                                    DoorSwitch++;
+                                    StartCoroutine(DoorOpenCutScene());
                                 }
 
                             }
@@ -156,6 +168,41 @@ public class LevelManager : MonoBehaviour
         #endregion
 
     }
+
+    #region Door Unlocked Cutscene
+    IEnumerator DoorOpenCutScene()
+    {
+        inCutScene = true;
+        //make player busy
+        //playerMovementScript.enabled = false;
+
+        //activate the camera for that cycle.
+        cutSceneCams[0].SetActive(true);
+        virtualCams[1].SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+        //activate the door
+        if (!DoorList[0].isOpen)
+        {
+            DoorList[0].Open();
+            DoorSwitch++;
+        }
+
+        //play music
+        doorOpenedFan.Play();
+        yield return new WaitForSeconds(200f);
+        //toggle off camera
+        cutSceneCams[0].SetActive(true);
+        virtualCams[1].SetActive(false);
+        yield return new WaitForSeconds(1f);
+        //restore player movement
+        playerMovementScript.enabled = true;
+        inCutScene = false;
+        cycleOneScene = true;
+    }
+
+    #endregion
+
 
     #region Update Finished Puzzles
     public void UpdateFinishedPuzzles(Text taskText)

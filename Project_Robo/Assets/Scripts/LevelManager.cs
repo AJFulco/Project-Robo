@@ -124,16 +124,16 @@ public class LevelManager : MonoBehaviour
                     case 1: // Checking if door 1 is open
                         #region Open Door 1 Checks
                         //make sure they all exist
-                        if (PuzzleUIScript.puzzles[0] != null &&
+                        if (PuzzleUIScript.puzzles[0] != null /*&&
                             PuzzleUIScript.puzzles[1] != null &&
                             PuzzleUIScript.puzzles[2] != null &&
-                            PuzzleUIScript.puzzles[3] != null)
+                            PuzzleUIScript.puzzles[3] != null*/)
                         {
                             // If all four tutorial puzzles are complete
-                            if (PuzzleUIScript.puzzles[0].isComplete &&
+                            if (PuzzleUIScript.puzzles[0].isComplete /*&&
                                 PuzzleUIScript.puzzles[1].isComplete &&
                                 PuzzleUIScript.puzzles[2].isComplete &&
-                                PuzzleUIScript.puzzles[3].isComplete)
+                                PuzzleUIScript.puzzles[3].isComplete*/)
                             {
                                 Debug.Log("All tutorial puzzles complete, door should open");
                                 if (cycleOneScene == false)

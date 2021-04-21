@@ -189,7 +189,7 @@ public class LevelManager : MonoBehaviour
         }
 
         //play music
-        doorOpenedFan.Play();
+        //doorOpenedFan.Play();
         yield return new WaitForSeconds(200f);
         //toggle off camera
         cutSceneCams[0].SetActive(true);

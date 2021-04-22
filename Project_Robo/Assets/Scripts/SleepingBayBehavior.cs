@@ -43,13 +43,14 @@ public class SleepingBayBehavior : MonoBehaviour
             // Move Bitbot to the specific position for the animation of getting into sleeping bay
             //anim.SetBool("isPoweringDown", true);
 
-            Debug.Log("Coroutine starts");
+            //Debug.Log("Coroutine starts");
             // Run coroutine
-            StartCoroutine(PowerDownCoroutine());
+            //StartCoroutine(PowerDownCoroutine());
 
-            Debug.Log("Waited 10 seconds??");
+            //Debug.Log("Waited 10 seconds??");
             
-            levelManagerScript.Cycle++;
+            levelManagerScript.IncrementCycle();
+            levelManagerScript.DeactivateSleepBays();//just
             //anim.SetBool("isPoweringUp", true);
 
             Debug.Log(levelManagerScript.Cycle);

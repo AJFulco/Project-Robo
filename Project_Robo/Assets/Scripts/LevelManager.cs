@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,7 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// 0 = Main menu
     /// 1 = Normal gameplay
-    /// 2 = Puzzle gameplay
+    /// 2 = Puzzel gameplay
     /// 3 = Paused game
     /// We can build on top of this more as the we add more stuff. 
     /// </summary>
@@ -78,12 +77,10 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        IncrementCycle();
-        IncrementDoorSwitch();
+        Cycle++;
+        DoorSwitch++;
         //Skybox.ge Assets/Art/Skybox Stuff/Faces/skybox blue/cubemap.png
     }
-
-    
 
     // Update is called once per frame
     void Update()
@@ -107,9 +104,13 @@ public class LevelManager : MonoBehaviour
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;
-            case 2: 
+            case 2: //pause menue is active
+                //puzzleUI.SetActive(false);
+                //player movement code
                 break;
-            case 3: 
+            case 3: //puzzle Ui is active. 
+                //puzzleUI.SetActive(false);
+                //player movement code
                 break;
         }
         #endregion
@@ -123,15 +124,21 @@ public class LevelManager : MonoBehaviour
                     case 1: // Checking if door 1 is open
                         #region Open Door 1 Checks
                         //make sure they all exist
-                        if (CheckPuzzlesExist(0,1))
+                        if (PuzzleUIScript.puzzles[0] != null /*&&
+                            PuzzleUIScript.puzzles[1] != null &&
+                            PuzzleUIScript.puzzles[2] != null &&
+                            PuzzleUIScript.puzzles[3] != null*/)
                         {
-                            // If both tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(0,1))
+                            // If all four tutorial puzzles are complete
+                            if (PuzzleUIScript.puzzles[0].isComplete /*&&
+                                PuzzleUIScript.puzzles[1].isComplete &&
+                                PuzzleUIScript.puzzles[2].isComplete &&
+                                PuzzleUIScript.puzzles[3].isComplete*/)
                             {
-                                Debug.Log("Both tutorial puzzles complete, door should be open");
+                                Debug.Log("All tutorial puzzles complete, door should open");
                                 if (cycleOneScene == false)
                                 {
-                                    StartCoroutine(DoorOpenCutScene(DoorSwitch - 1));
+                                    StartCoroutine(DoorOpenCutScene());
                                 }
 
                             }
@@ -140,91 +147,20 @@ public class LevelManager : MonoBehaviour
                         break;
                     case 2: // Checking if all cycle 1 puzzles are complete
                         #region Remaining Puzzles Check
-                        if (CheckPuzzlesExist(2,3))
+                        if (PuzzleUIScript.puzzles[4] != null)
                         {
                             // If all four tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(2,3))
+                            if (PuzzleUIScript.puzzles[4].isComplete)
                             {
                                 // Set the sleeping bay trigger to active
-                                Debug.Log("All First Cycle puzzles complete, head to sleep");
-                                ActivateSleepBays();
+                                GameObject.Find("RobotCellsOpen (2)").GetComponent<BoxCollider>().enabled = true;   // This is the sleeping bay that Bitbot starts off in
                             }
                         }
                         #endregion
                         break;
-                    default:
-                        break;
                 }
-                
                 break;
             case 2: // The second game cycle
-                switch (DoorSwitch)     // Opening doors in Cycle 1
-                {
-                    case 2: // Checking if puzzles 4,5 are complete
-                        #region Opening lots of doors
-                        //make sure they all exist
-                        if (CheckPuzzlesExist(4, 5))
-                        {
-                            // If both tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(4, 5))
-                            {
-
-                                DoorList[DoorSwitch - 1].Open();
-                                IncrementDoorSwitch();
-                                DoorList[DoorSwitch - 1].Open();
-                                IncrementDoorSwitch();
-                                /*Debug.Log("Both puzzles complete, doors should be open");
-                                if (cycleOneScene == false)
-                                {
-                                    StartCoroutine(DoorOpenCutScene(DoorSwitch - 1));//DoorSwitch is at 2
-                                    StartCoroutine(DoorOpenCutScene(DoorSwitch - 1));//DoorSwitch is at 3
-                                }*/
-
-                            }
-                        }
-                        break;
-                    case 4:
-                        if (CheckPuzzlesExist(6, 6))
-                        {
-                            // If all four tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(6, 6))
-                            {
-                                DoorList[DoorSwitch - 1].Open();
-                                IncrementDoorSwitch();
-                            }
-                        }
-                        break;
-                    case 5:
-                        if (CheckPuzzlesExist(10, 10))
-                        {
-                            // If all four tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(10, 10))
-                            {
-                                DoorList[DoorSwitch - 1].Open();
-                                IncrementDoorSwitch();
-                            }
-                        }
-                        break;
-                        #endregion
-                    case 6: // Checking if all cycle 2
-                        //needs to be case four
-                        #region Remaining Puzzles Check
-                        if (CheckPuzzlesExist(7, 10))
-                        {
-                            // If all four tutorial puzzles are complete
-                            if (CheckPuzzlesComplete(7, 10))
-                            {
-                                // Set the sleeping bay trigger to active
-                                Debug.Log("All Second Cycle puzzles complete, head to sleep");
-                                ActivateSleepBays();
-                                IncrementDoorSwitch();//Doorswith++ but fancier
-                            }
-                        }
-                        #endregion
-                        break;
-                    default:
-                        break;
-                }
                 break;
             case 3:
                 break;
@@ -232,88 +168,33 @@ public class LevelManager : MonoBehaviour
         #endregion
 
     }
-    #region Connor adds a bunch of small functions to make busywork faster later.
-    private void ActivateSleepBays()//sets all the colliders in the sleepbays to true once the player finishes all the puzzles in a cylce
-    {
-        GameObject.Find("RobotCellsOpen").GetComponent<BoxCollider>().enabled = true;   
-        GameObject.Find("RobotCellsOpen (1)").GetComponent<BoxCollider>().enabled = true;
-        GameObject.Find("RobotCellsOpen (2)").GetComponent<BoxCollider>().enabled = true;  
-        GameObject.Find("RobotCellsOpen (3)").GetComponent<BoxCollider>().enabled = true;  
-        GameObject.Find("RobotCellsOpen (4)").GetComponent<BoxCollider>().enabled = true;  
-        GameObject.Find("RobotCellsOpen (5)").GetComponent<BoxCollider>().enabled = true;  
-    }
-    public void DeactivateSleepBays()//sets all the colliders in the sleepbays to true once the player finishes all the puzzles in a cylce
-    {
-        GameObject.Find("RobotCellsOpen").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("RobotCellsOpen (1)").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("RobotCellsOpen (2)").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("RobotCellsOpen (3)").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("RobotCellsOpen (4)").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("RobotCellsOpen (5)").GetComponent<BoxCollider>().enabled = false;
-    }
-    public void IncrementCycle()
-    {
-        if (Cycle < 3)
-        {
-            Cycle++;
-        }
-        else { Debug.Log("thats not supposed to happen! Too many cycles!"); }
-    }
-    private void IncrementDoorSwitch() 
-    {
-        if (DoorSwitch < 9) {DoorSwitch++;}
-        else { Debug.Log("thats not supposed to happen! Too many doors!"); }
-    }
-    public Boolean CheckPuzzlesExist(int start, int end)//checks to make sure that the following inclusive puzzles are not Null
-    {
-        for (int i = start; i <= end; i++) {
-            if (PuzzleUIScript.puzzles[i] == null) 
-            {
-                return false;
-            }
-        }
-        return true;
-
-    }
-    public Boolean CheckPuzzlesComplete(int start, int end)//checks to make sure that the following inclusive puzzles are not Null
-    {
-        for (int i = start; i <= end; i++)
-        {
-            if (PuzzleUIScript.puzzles[i].isComplete == false)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    #endregion
 
     #region Door Unlocked Cutscene
-    IEnumerator DoorOpenCutScene(int doorNumb)//input the number of the current door switch - 1 so that the rest of the code works :)
+    IEnumerator DoorOpenCutScene()
     {
         inCutScene = true;
         //make player busy
         //playerMovementScript.enabled = false;
 
         //activate the camera for that cycle.
-        cutSceneCams[doorNumb].SetActive(true);
+        cutSceneCams[0].SetActive(true);
         virtualCams[1].SetActive(false);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
         //activate the door
-        if (!DoorList[doorNumb].isOpen)
+        if (!DoorList[0].isOpen)
         {
-            DoorList[doorNumb].Open();
-            IncrementDoorSwitch();
+            DoorList[0].Open();
+            DoorSwitch++;
         }
 
         //play music
         //doorOpenedFan.Play();
-        yield return new WaitForSeconds(2.0f);//200 is wack, 2 for testing :/
+        yield return new WaitForSeconds(200f);
         //toggle off camera
-        cutSceneCams[doorNumb].SetActive(true);
+        cutSceneCams[0].SetActive(true);
         virtualCams[1].SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
         //restore player movement
         playerMovementScript.enabled = true;
         inCutScene = false;
@@ -321,6 +202,7 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
+
 
     #region Update Finished Puzzles
     public void UpdateFinishedPuzzles(Text taskText)

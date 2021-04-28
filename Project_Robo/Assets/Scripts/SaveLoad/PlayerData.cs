@@ -72,9 +72,9 @@ public class PlayerData
 
             // Set the loading location
             position = new float[3];
-            position[0] = firstFloorSleepingBays[closestBayTemp,0] + 7;
+            position[0] = firstFloorSleepingBays[closestBayTemp,0];
             position[1] = firstFloorSleepingBays[closestBayTemp,1];
-            position[2] = firstFloorSleepingBays[closestBayTemp,2] - 5;
+            position[2] = firstFloorSleepingBays[closestBayTemp,2];
         }
         else
         {
@@ -96,7 +96,7 @@ public class PlayerData
             }
 
             position = new float[3];
-            position[0] = secondFloorSleepingBays[closestBayTemp,0] + 500;
+            position[0] = secondFloorSleepingBays[closestBayTemp,0];
             position[1] = secondFloorSleepingBays[closestBayTemp,1];
             position[2] = secondFloorSleepingBays[closestBayTemp,2];
         }

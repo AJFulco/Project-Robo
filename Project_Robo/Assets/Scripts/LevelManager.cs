@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -18,7 +19,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public int progressState = 0;
     public int playerState = 0; //this is an int that will be used to keep track of what stat the game is in.
-    public int Cycle = 0; //What is the playthrough number for for the player [Changes the skybox basically]
+    public int Cycle = 0; //What is the playthrough number for for the player 
     public int DoorSwitch = 0;
 
 
@@ -54,7 +55,8 @@ public class LevelManager : MonoBehaviour
     [Space(2)]
     [Header("Skybox/CubeMap Stuff")]
     //Changing the skybox / CubeMaps
-    [SerializeField] public ArrayList CubeMapArrayList = new ArrayList();
+    [SerializeField] public List<VolumeProfile> volumeProfile;
+    [SerializeField] public GameObject SkyAndFogVolume;
 
     [Space(2)]
     [Header("Sleeping Bays")]
@@ -80,7 +82,6 @@ public class LevelManager : MonoBehaviour
     {
         IncrementCycle();
         IncrementDoorSwitch();
-        //Skybox.ge Assets/Art/Skybox Stuff/Faces/skybox blue/cubemap.png
     }
 
     
@@ -258,6 +259,8 @@ public class LevelManager : MonoBehaviour
         if (Cycle < 3)
         {
             Cycle++;
+            Debug.Log("Cycle " + Cycle);
+            SkyAndFogVolume.GetComponent<Volume>().sharedProfile = volumeProfile[UnityEngine.Random.Range(0, 7)];
         }
         else { Debug.Log("thats not supposed to happen! Too many cycles!"); }
     }

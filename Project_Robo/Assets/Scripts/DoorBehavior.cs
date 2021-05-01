@@ -22,7 +22,7 @@ public class DoorBehavior : MonoBehaviour
     public void Open() { //opens the door when called
         this.GetComponent<BoxCollider>().enabled = false;
         isOpen = true;
-        Debug.Log("The Door is now OPEN!!!!!!");
+        Debug.Log(this.name + "is now OPEN!!!!!!");
         anim.SetBool("isOpening",true);
        
 

@@ -146,7 +146,7 @@ public class LevelManager : MonoBehaviour
                             if (CheckPuzzlesComplete(2,3))
                             {
                                 // Set the sleeping bay trigger to active
-                                Debug.Log("All First Cycle puzzles complete, head to sleep");
+                                //Debug.Log("All First Cycle puzzles complete, head to sleep");
                                 ActivateSleepBays();
                             }
                         }

@@ -202,11 +202,13 @@ public class LevelManager : MonoBehaviour
                             {
                                 DoorList[DoorSwitch - 1].Open();
                                 IncrementDoorSwitch();
+                                DoorList[DoorSwitch - 1].Open();
+                                IncrementDoorSwitch();
                             }
                         }
                         break;
                         #endregion
-                    case 6: // Checking if all cycle 2
+                    case 7: // Checking if all cycle 2
                         //needs to be case four
                         #region Remaining Puzzles Check
                         if (CheckPuzzlesExist(7, 10))
@@ -261,7 +263,7 @@ public class LevelManager : MonoBehaviour
     }
     private void IncrementDoorSwitch() 
     {
-        if (DoorSwitch < 9) {DoorSwitch++;}
+        if (DoorSwitch < 15) {DoorSwitch++;}
         else { Debug.Log("thats not supposed to happen! Too many doors!"); }
     }
     public Boolean CheckPuzzlesExist(int start, int end)//checks to make sure that the following inclusive puzzles are not Null

@@ -27,7 +27,7 @@ public class PuzzleObject : MonoBehaviour
         player = Rewired.ReInput.players.GetPlayer(playerId);
 
         //find and assign the level manager
-        levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>(); 
+        levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
     }
     #endregion
 
@@ -37,6 +37,7 @@ public class PuzzleObject : MonoBehaviour
     [SerializeField] private Text taskTextPrefab;
     [SerializeField] public int puzzleID;
     [SerializeField] public string taskName = "Observe the Monitor";
+    
 
     // Script Communication
     public GameObject taskHolder;
@@ -100,7 +101,7 @@ public class PuzzleObject : MonoBehaviour
     // When the player approaches a PuzzleObject, display a prompt to the player
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && CheckPuzzleCycle(levelManager.Cycle, puzzleID))
         {
             UI.currentPuzzle = puzzleID;
             nearThis = true;
@@ -108,6 +109,26 @@ public class PuzzleObject : MonoBehaviour
 
             UI.puzzleNearText.gameObject.SetActive(true);
         }
+    }
+    //Check if the puzzle is interactable during this current cycle.
+    public bool CheckPuzzleCycle(int c, int id) {//when given a list, if will check to see if the int c is in that list
+        int[] cycleOnePuzzles = { 0, 1, 2, 3 };
+        int[] cycleTwoPuzzles = { 4, 5, 6, 7, 8, 9, 10 };
+        int[] cycleThreePuzzles = { 11, 12, 13, 14 };
+        int[] list = null;
+
+        if (c == 1){list = cycleOnePuzzles;}
+        else if (c == 2)  {list = cycleTwoPuzzles;}
+        else if (c == 3){list = cycleThreePuzzles; }
+        else { return false; }
+
+
+        foreach (int i in list){
+            if (i == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Change the text that is displayed to the player based both on the controller they are using and whether the connected puzzle has been completed

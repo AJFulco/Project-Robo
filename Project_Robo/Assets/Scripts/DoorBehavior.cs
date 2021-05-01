@@ -20,16 +20,17 @@ public class DoorBehavior : MonoBehaviour
     }
 
     public void Open() { //opens the door when called
+        this.GetComponent<BoxCollider>().enabled = false;
         isOpen = true;
-        Debug.Log("The Door is now OPEN!!!!!!");
+        Debug.Log(this.name + "is now OPEN!!!!!!");
         anim.SetBool("isOpening",true);
-        GameObject.Find("Open").GetComponent<BoxCollider>().enabled = false;
+       
 
     }
     public void Close(){ //closes the door when called
         isOpen = false;
         Debug.Log("The Door is now Closed :(");
         anim.SetBool("isOpening", false);
-        GameObject.Find("Open").GetComponent<BoxCollider>().enabled = true;
+        this.GetComponent<BoxCollider>().enabled = true;
     }
 }

@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook thirdPersonCamera;    // Reference to the ThirdPersonCamera
     private float cameraYAxisMaxSpeed;
     private float cameraXAxisMaxSpeed;
-    
+    Vector3 FloorElevPos1 = new Vector3(14.2299995f, -4.56f, -169.639999f);
+    Vector3 FloorElevPos2 = new Vector3(14.2299995f, 32.9300003f, -169.639999f);
+
+    [SerializeField]LevelManager levelManager;
     //I dont know which vector 3 does what, but you need these to make the character 
     //move with the camera n' stuff. 
     public Vector3 direction; // a vector three your need for your camera angle stuff
@@ -117,6 +120,17 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void TeleportPlayer(bool FirstFloor) {
+        if (FirstFloor)
+        {
+            transform.position = FloorElevPos2;
+            Debug.Log("To 2nd Floor");
+        }
+        else {
+            transform.position = FloorElevPos1;
+            Debug.Log("To 1st Floor");
+        }
+    }
     // Update is called once per frame
     void Update()
     {

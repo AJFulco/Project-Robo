@@ -8,7 +8,7 @@ public class ElevatorButton : MonoBehaviour
 
     [SerializeField] GameObject gamer;//this is the player, but that was already taken so i use gamer
     [SerializeField] bool firstFloor;
-
+    LevelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class ElevatorButton : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag.Equals("Player")) {
+        if (other.tag.Equals("Player") && levelManager.Cycle == 3) {
             gamer.GetComponent<PlayerMovement>().TeleportPlayer(firstFloor);
             firstFloor = !firstFloor;
         }

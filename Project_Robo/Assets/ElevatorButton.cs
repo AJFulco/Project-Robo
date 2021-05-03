@@ -28,10 +28,14 @@ public class ElevatorButton : MonoBehaviour
     [SerializeField] LevelManager levelManager;
     public bool canElevate = false;
     public PlayerMovement pM;
+    private AudioSource audioComponent;
+    [SerializeField] AudioClip ascend;
+    [SerializeField] AudioClip descend;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioComponent = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +46,8 @@ public class ElevatorButton : MonoBehaviour
                 if (player.GetButtonSinglePressHold("Interact")) 
                 {
                     Debug.Log("Dubgg");
+                    if (firstFloor && ascend != null) audioComponent.PlayOneShot(ascend);
+                    else if (descend != null) audioComponent.PlayOneShot(descend);
                     pM.TeleportPlayer(firstFloor);
                     firstFloor = !firstFloor;
                 }

@@ -6,11 +6,13 @@ public class DoorBehavior : MonoBehaviour
 {
     public bool isOpen = false;
     public Animator anim;
+    private AudioSource audioComponent;
+    [SerializeField] AudioClip openSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioComponent = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class DoorBehavior : MonoBehaviour
 
     public void Open() { //opens the door when called
         this.GetComponent<BoxCollider>().enabled = false;
+        if(openSound != null) audioComponent.PlayOneShot(openSound);
         isOpen = true;
         Debug.Log(this.name + "is now OPEN!!!!!!");
         anim.SetBool("isOpening",true);

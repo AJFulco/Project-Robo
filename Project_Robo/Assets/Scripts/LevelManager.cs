@@ -66,6 +66,8 @@ public class LevelManager : MonoBehaviour
 
     [Space]
     public AudioSource doorOpenedFan = null;
+    [SerializeField] AudioSource franticSource;
+    [SerializeField] AudioSource calmSource;
 
     private bool cycleOneScene = false;
 
@@ -148,6 +150,7 @@ public class LevelManager : MonoBehaviour
                             {
                                 // Set the sleeping bay trigger to active
                                 //Debug.Log("All First Cycle puzzles complete, head to sleep");
+                                musicSwapper(true);
                                 ActivateSleepBays();
                             }
                         }
@@ -159,6 +162,7 @@ public class LevelManager : MonoBehaviour
                 
                 break;
             case 2: // The second game cycle
+                musicSwapper(false);
                 switch (DoorSwitch)     // Opening doors in Cycle 1
                 {
                     case 2: // Checking if puzzles 4,5 are complete
@@ -219,6 +223,7 @@ public class LevelManager : MonoBehaviour
                             {
                                 // Set the sleeping bay trigger to active
                                 Debug.Log("All Second Cycle puzzles complete, head to sleep");
+                                musicSwapper(true);
                                 ActivateSleepBays();
                                 IncrementDoorSwitch();//Doorswith++ but fancier
                             }
@@ -230,6 +235,7 @@ public class LevelManager : MonoBehaviour
                 }
                 break;
             case 3:
+                musicSwapper(false);
                 break;
         }
         #endregion
@@ -379,4 +385,22 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+    #region Main Music Volume Manager
+    void musicSwapper(bool cyclePoint)
+    {
+        if (franticSource != null && calmSource != null)
+        {
+            if (cyclePoint)
+            {
+                franticSource.volume = 0.0f;
+                calmSource.volume = 1.0f;
+            }
+            else
+            {
+                franticSource.volume = 1.0f;
+                calmSource.volume = 0.0f;
+            }
+        }
+    }
+    #endregion
 }

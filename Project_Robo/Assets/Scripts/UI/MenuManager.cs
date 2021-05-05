@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
     [SerializeField] private LevelManager levelManager = null;  // Reference to the LevelManager
+    public PlayerMovement playerMovement;   // Reference to the player movement script
     public PuzzleUI puzzleUI;   // Reference to the PuzzleUI script
 
     #region Rewired Stuff
@@ -45,6 +46,7 @@ public class MenuManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
         Time.timeScale = 0;
+        playerMovement.isInAMenu = true;
 
     } // End of Start()
 
@@ -71,13 +73,18 @@ public class MenuManager : MonoBehaviour
         //Debug.Log("Loading new game...");
         levelManager.playerState = 1;
         mainMenuUI.SetActive(false);
+        playerMovement.isInAMenu = false;
         Time.timeScale = 1;
+
 
     } // End of PlayGame()
 
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        playerMovement.isInAMenu = true;
+        Cursor.lockState = CursorLockMode.None; // Unlock cursor into the active window
+        Cursor.visible = true;                  // Show the cursor
         Time.timeScale = 0;
         gameIsPaused = true;
 
@@ -87,6 +94,9 @@ public class MenuManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
+        playerMovement.isInAMenu = false;
+        Cursor.lockState = CursorLockMode.Locked;   // Unlock cursor into the active window
+        Cursor.visible = false;                     // Show the cursor
         Time.timeScale = 1;
         gameIsPaused = false;
 
@@ -97,6 +107,7 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
         Debug.Log("Loading the Main Menu...");
         levelManager.playerState = 0;
+        playerMovement.isInAMenu = true;
 
     } // End of LoadMainMenu()
 
@@ -112,6 +123,7 @@ public class MenuManager : MonoBehaviour
             mainMenuUI.SetActive(false);
         }
         optionsMenuUI.SetActive(true);
+        playerMovement.isInAMenu = true;
 
 
     } // End of LoadOptions()
@@ -127,6 +139,7 @@ public class MenuManager : MonoBehaviour
         {
             mainMenuUI.SetActive(true);
         }
+        playerMovement.isInAMenu = true;
 
     } // End of OptionsBack()
 

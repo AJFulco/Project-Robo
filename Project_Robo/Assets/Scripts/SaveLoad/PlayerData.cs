@@ -34,19 +34,19 @@ public class PlayerData
         // Find number of sleeping bays and their positions
         int numberOfFirstFlrBays = levelManager.firstFlrSleepingBays.Count;
         int numberOfSecondFlrBays = levelManager.secondFlrSleepingBays.Count;
-        firstFloorSleepingBays = new float [numberOfFirstFlrBays,3];
+        firstFloorSleepingBays = new float[numberOfFirstFlrBays, 3];
         for (int i = 0; i < numberOfFirstFlrBays; i++)
         {
-            firstFloorSleepingBays[i,0] = levelManager.firstFlrSleepingBays[i].transform.position.x;
-            firstFloorSleepingBays[i,1] = levelManager.firstFlrSleepingBays[i].transform.position.y;
-            firstFloorSleepingBays[i,2] = levelManager.firstFlrSleepingBays[i].transform.position.z;
+            firstFloorSleepingBays[i, 0] = levelManager.firstFlrSleepingBays[i].transform.position.x;
+            firstFloorSleepingBays[i, 1] = levelManager.firstFlrSleepingBays[i].transform.position.y;
+            firstFloorSleepingBays[i, 2] = levelManager.firstFlrSleepingBays[i].transform.position.z;
         }
-        secondFloorSleepingBays = new float[numberOfSecondFlrBays,3];
+        secondFloorSleepingBays = new float[numberOfSecondFlrBays, 3];
         for (int i = 0; i < numberOfSecondFlrBays; i++)
         {
-            secondFloorSleepingBays[i,0] = levelManager.secondFlrSleepingBays[i].transform.position.x;
-            secondFloorSleepingBays[i,1] = levelManager.secondFlrSleepingBays[i].transform.position.y;
-            secondFloorSleepingBays[i,2] = levelManager.secondFlrSleepingBays[i].transform.position.z;
+            secondFloorSleepingBays[i, 0] = levelManager.secondFlrSleepingBays[i].transform.position.x;
+            secondFloorSleepingBays[i, 1] = levelManager.secondFlrSleepingBays[i].transform.position.y;
+            secondFloorSleepingBays[i, 2] = levelManager.secondFlrSleepingBays[i].transform.position.z;
         }
 
 
@@ -59,8 +59,8 @@ public class PlayerData
             for (int i = 0; i < firstFloorSleepingBays.GetLength(0); i++)
             {
                 // Find the hypotenuse (distance between the two points)
-                float differenceX = player.transform.position.x - firstFloorSleepingBays[i,0];
-                float differenceZ = player.transform.position.z - firstFloorSleepingBays[i,2];
+                float differenceX = player.transform.position.x - firstFloorSleepingBays[i, 0];
+                float differenceZ = player.transform.position.z - firstFloorSleepingBays[i, 2];
                 float hypoTemp = Mathf.Sqrt((Mathf.Abs(differenceX) * Mathf.Abs(differenceX)) + (Mathf.Abs(differenceZ) * Mathf.Abs(differenceZ)));
                 // Check if this distance is shorter than what has already been found
                 if (hypoTemp < shortestHypoTemp)
@@ -72,9 +72,9 @@ public class PlayerData
 
             // Set the loading location
             position = new float[3];
-            position[0] = firstFloorSleepingBays[closestBayTemp,0];
-            position[1] = firstFloorSleepingBays[closestBayTemp,1];
-            position[2] = firstFloorSleepingBays[closestBayTemp,2];
+            position[0] = firstFloorSleepingBays[closestBayTemp, 0] + 7;
+            position[1] = firstFloorSleepingBays[closestBayTemp, 1];
+            position[2] = firstFloorSleepingBays[closestBayTemp, 2] - 5;
         }
         else
         {
@@ -84,8 +84,8 @@ public class PlayerData
             for (int i = 0; i < secondFloorSleepingBays.GetLength(0); i++)
             {
                 // Find the hypotenuse (distance between the two points)
-                float differenceX = player.transform.position.x - secondFloorSleepingBays[i,0];
-                float differenceZ = player.transform.position.z - secondFloorSleepingBays[i,2];
+                float differenceX = player.transform.position.x - secondFloorSleepingBays[i, 0];
+                float differenceZ = player.transform.position.z - secondFloorSleepingBays[i, 2];
                 float hypoTemp = Mathf.Sqrt((Mathf.Abs(differenceX) * Mathf.Abs(differenceX)) + (Mathf.Abs(differenceZ) * Mathf.Abs(differenceZ)));
                 // Check if this distance is shorter than what has already been found
                 if (hypoTemp < shortestHypoTemp)
@@ -96,9 +96,9 @@ public class PlayerData
             }
 
             position = new float[3];
-            position[0] = secondFloorSleepingBays[closestBayTemp,0];
-            position[1] = secondFloorSleepingBays[closestBayTemp,1];
-            position[2] = secondFloorSleepingBays[closestBayTemp,2];
+            position[0] = secondFloorSleepingBays[closestBayTemp, 0] + 500;
+            position[1] = secondFloorSleepingBays[closestBayTemp, 1];
+            position[2] = secondFloorSleepingBays[closestBayTemp, 2];
         }
 
 

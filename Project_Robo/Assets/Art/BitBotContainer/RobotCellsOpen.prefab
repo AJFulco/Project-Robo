@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 1256232060051539193}
   - component: {fileID: 2675723594168983015}
   - component: {fileID: 1187511993706589711}
-  m_Layer: 0
+  - component: {fileID: 1501510993}
+  m_Layer: 6
   m_Name: RobotCellOpen:Cube_1_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1256232060051539193
 Transform:
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1501510993
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956758952466259447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5138859591203798303, guid: af7b73aad20c664428a30150308317f2, type: 3}
 --- !u!1 &2829757456856398682
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,12 +107,13 @@ GameObject:
   - component: {fileID: 4200178476322232060}
   - component: {fileID: 4019363368012981802}
   - component: {fileID: 1051056179174819470}
-  m_Layer: 0
+  - component: {fileID: 1448705517}
+  m_Layer: 6
   m_Name: RobotCellOpen:Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4200178476322232060
 Transform:
@@ -162,6 +178,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1448705517
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829757456856398682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3358065592228978772, guid: af7b73aad20c664428a30150308317f2, type: 3}
 --- !u!1 &3017429849324641237
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,12 +203,13 @@ GameObject:
   - component: {fileID: 1405242976698313100}
   - component: {fileID: 4561388843027844934}
   - component: {fileID: 3497702370208239757}
-  m_Layer: 0
+  - component: {fileID: 2126005247}
+  m_Layer: 6
   m_Name: RobotCellOpen:Cube_2_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1405242976698313100
 Transform:
@@ -243,6 +274,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2126005247
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017429849324641237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4052804440565786140, guid: af7b73aad20c664428a30150308317f2, type: 3}
 --- !u!1 &5688962120020166548
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,12 +299,13 @@ GameObject:
   - component: {fileID: 6088046092603848998}
   - component: {fileID: 3383197501382957188}
   - component: {fileID: 4201216469759706424}
-  m_Layer: 0
+  - component: {fileID: 1446192891}
+  m_Layer: 6
   m_Name: RobotCellOpen:RobotCell_5_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6088046092603848998
 Transform:
@@ -324,6 +370,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1446192891
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688962120020166548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2072136122694309272, guid: af7b73aad20c664428a30150308317f2, type: 3}
 --- !u!1 &6628621299848865118
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,12 +396,12 @@ GameObject:
   - component: {fileID: 4774454838632647386}
   - component: {fileID: 8585655624387339650}
   - component: {fileID: 2693172663508158720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RobotCellsOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5815914443529535460
 Transform:

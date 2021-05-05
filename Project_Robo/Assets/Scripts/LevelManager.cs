@@ -95,18 +95,18 @@ public class LevelManager : MonoBehaviour
         switch (playerState)
         {
             case 0: //if this is 0 we are in the main menu code.
-                //puzzleUI.SetActive(false);
-                //player movment code 
+                // Player movment code 
                 playerMovementScript.enabled = false;
 
-                //the virtual cameras 
+                // The virtual cameras 
                 virtualCams[0].SetActive(true);
                 virtualCams[1].SetActive(false);
                 break;
-            case 1: //player is allowed overworld movement. 
-                //puzzleUI.SetActive(true);
-                //player movement code
+            case 1: //player is allowed overworld movement.
+                // Player movement code
                 playerMovementScript.enabled = true;
+
+                // The virtual cameras
                 virtualCams[1].SetActive(true);
                 virtualCams[0].SetActive(false);
                 break;

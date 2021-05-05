@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             // Allow camera movement
             thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraYAxisMaxSpeed;
             thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraXAxisMaxSpeed;
-            Debug.Log("Unlocked cursor");
+            //Debug.Log("Unlocked cursor");
             Cursor.lockState = CursorLockMode.Locked;   // Unlock cursor into the active window
             Cursor.visible = false;                     // Show the cursor
 
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             // Prevent camera movement
             thirdPersonCamera.m_YAxis.m_MaxSpeed = 0;
             thirdPersonCamera.m_XAxis.m_MaxSpeed = 0;
-            Debug.Log("Locked cursor");
+            //Debug.Log("Locked cursor");
             Cursor.lockState = CursorLockMode.None;     // Unlock cursor into the active window
             Cursor.visible = true;                      // Show the cursor
         }

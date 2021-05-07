@@ -21,7 +21,10 @@ public class LevelManager : MonoBehaviour
     public int playerState = 0; //this is an int that will be used to keep track of what stat the game is in.
     public int Cycle = 0; //What is the playthrough number for for the player 
     public int DoorSwitch = 0;
-
+    public bool read1 = true;
+    public bool read2 = true;
+    public bool read3 = true;
+    public bool read4 = true;
 
     [Space(2)]
     [Header("References")]
@@ -178,13 +181,7 @@ public class LevelManager : MonoBehaviour
                                 IncrementDoorSwitch();
                                 DoorList[DoorSwitch - 1].Open();
                                 IncrementDoorSwitch();
-                                /*Debug.Log("Both puzzles complete, doors should be open");
-                                if (cycleOneScene == false)
-                                {
-                                    StartCoroutine(DoorOpenCutScene(DoorSwitch - 1));//DoorSwitch is at 2
-                                    StartCoroutine(DoorOpenCutScene(DoorSwitch - 1));//DoorSwitch is at 3
-                                }*/
-
+                                
                             }
                         }
                         break;
@@ -234,8 +231,35 @@ public class LevelManager : MonoBehaviour
                         break;
                 }
                 break;
-            case 3:
+            case 3://not using a switch statement this time, bc you can open any door in any order
                 musicSwapper(false);
+                if (CheckPuzzlesExist(11, 14))
+                {
+                    if (CheckPuzzlesComplete(11, 11) && read1)
+                    {
+                        DoorList[6].Open();//hardcoded :( Sadge
+                        read1 = false;
+                    }
+
+                    if (CheckPuzzlesComplete(12, 12) && read2)
+                    {
+                        DoorList[7].Open();
+                        read2 = false;
+                    }
+
+                    if (CheckPuzzlesComplete(13, 13) && read3)
+                    {
+                        DoorList[8].Open();
+                        read3 = false;
+                    }
+               
+                    if (CheckPuzzlesComplete(11, 14) && read4)
+                    {
+                        DoorList[9].Open();
+                        DoorList[10].Open();
+                        read3 = false;
+                    }
+                }
                 break;
         }
         #endregion
@@ -272,7 +296,7 @@ public class LevelManager : MonoBehaviour
     }
     private void IncrementDoorSwitch() 
     {
-        if (DoorSwitch < 15) {DoorSwitch++;}
+        if (DoorSwitch < 10) {DoorSwitch++;}
         else { Debug.Log("thats not supposed to happen! Too many doors!"); }
     }
     public Boolean CheckPuzzlesExist(int start, int end)//checks to make sure that the following inclusive puzzles are not Null

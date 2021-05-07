@@ -256,6 +256,7 @@ public class LevelManager : MonoBehaviour
                     if (CheckPuzzlesComplete(11, 14) && read4)
                     {
                         DoorList[9].Open();
+                        DoorList[10].Open();
                         read3 = false;
                     }
                 }

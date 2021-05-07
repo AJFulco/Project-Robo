@@ -277,6 +277,8 @@ public class MoleculeNode : MonoBehaviour
             // Only check other colors if there is at least one node connected to this one
             if (currentlyConnected.Count > 0)
             {
+                Debug.Log(nodeColor.ToString());
+
                 // Check the color of all nearby nodes and compare it to this node's color, incrementing sameColor if they are the same
                 for (int i = 0; i < currentlyConnected.Count; i++)
                 {
@@ -287,7 +289,7 @@ public class MoleculeNode : MonoBehaviour
                 } 
             }
 
-            //Debug.Log("sameColor: " + sameColor);
+            Debug.Log("sameColor: " + sameColor);
 
             // Spiked nodes rule is only met if there is exactly one node of the same color connected to it
             if (sameColor == 1)
@@ -300,7 +302,7 @@ public class MoleculeNode : MonoBehaviour
     // If a node has met both its rule and its maximum numConnections, then it is "satisfied"
     bool isSatisfied()
     {
-        if (currentConnections == numConnections && ruleMet)
+        if (!moving && currentConnections == numConnections && ruleMet)
             return true;
         else
             return false;

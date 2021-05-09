@@ -60,6 +60,7 @@ public class MoleculeNode : MonoBehaviour
 
     // Counter for shaking
     public int shaking = 0;
+    private float nearbyRad;
 
     // Constant for Color checking
     private static float delta = 0.001f;
@@ -68,6 +69,8 @@ public class MoleculeNode : MonoBehaviour
     // Basically just Script communication and initial setup from inspector variables
     void Start()
     {
+        nearbyRad = nearbyDetector.GetComponent<CircleCollider2D>().radius;
+
         if (thisNode != null)
         {
             thisNode.color = nodeColor;
@@ -143,9 +146,14 @@ public class MoleculeNode : MonoBehaviour
 
         satisfied = isSatisfied();
 
+        if (moving)
+            shaking = 0;
+
         // Shaking code
-        if (shaking > 0 && !moving)
+        if (shaking > 0)
         {
+            nearbyDetector.GetComponent<CircleCollider2D>().radius = nearbyRad * 1.2f;
+
             if (shaking % 20 >= 10)
             {
                 rect.offsetMax = new Vector2(rect.offsetMax.x + 1, rect.offsetMax.y);
@@ -161,7 +169,7 @@ public class MoleculeNode : MonoBehaviour
         }
         else
         {
-            thisNode.color = new Color(thisNode.color.r, thisNode.color.g, thisNode.color.b, 1);
+            nearbyDetector.GetComponent<CircleCollider2D>().radius = nearbyRad;
         }
     }
 
@@ -225,25 +233,29 @@ public class MoleculeNode : MonoBehaviour
                 }
 
                 // Remove nodes that you are no longer connected to (nodes that have moved)
-                for (int i = 0; i < currentlyConnected.Count; i++)
+                // What happens if I add a clause for shaking
+                if (shaking == 0)
                 {
-                    // Check if a node in the connections is no longer nearby
-                    if (!nearby.Contains(currentlyConnected[i]))
+                    for (int i = 0; i < currentlyConnected.Count; i++)
                     {
-                        // Loop through that nodes connections 
-                        for (int j = 0; j < connectorList.Count; j++)
+                        // Check if a node in the connections is no longer nearby
+                        if (!nearby.Contains(currentlyConnected[i]))
                         {
-                            if (connectorList[j].node2 == currentlyConnected[i])
+                            // Loop through that nodes connections 
+                            for (int j = 0; j < connectorList.Count; j++)
                             {
-                                //Connector temp = connectorList[j];
-                                Destroy(connectorList[j].gameObject);
-                                connectorList.RemoveAt(j);
-                                
-                            }
-                        }
+                                if (connectorList[j].node2 == currentlyConnected[i])
+                                {
+                                    //Connector temp = connectorList[j];
+                                    Destroy(connectorList[j].gameObject);
+                                    connectorList.RemoveAt(j);
 
-                        // Remove the connector from this node's list
-                        currentlyConnected.RemoveAt(i);
+                                }
+                            }
+
+                            // Remove the connector from this node's list
+                            currentlyConnected.RemoveAt(i);
+                        }
                     }
                 }
             }

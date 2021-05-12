@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Rewired;
 
 public class ConsoleButton : MonoBehaviour
 {
@@ -26,8 +28,9 @@ public class ConsoleButton : MonoBehaviour
     #endregion
 
     private MenuManager menu = null;
-    public GameObject follow = null;
-    public Collider2D collide = null;
+    private LevelManager levelManager = null;
+    [SerializeField] public Image cursor;
+    private Collider2D collide = null;
 
     [SerializeField] string command;
 
@@ -36,37 +39,43 @@ public class ConsoleButton : MonoBehaviour
     void Start()
     {
         menu = GameObject.Find("MenuCanvas").GetComponent<MenuManager>();
-        follow = GameObject.Find("ConsoleCursor");
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-        collide = this.GetComponent<Collider2D>();
+        collide = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (collide.IsTouching(follow.GetComponent<Collider2D>()))
+        if (this.transform.position.Equals(cursor.transform.position))
         {
+            Debug.Log("On button " + command);
 
-            switch (command)
+            if (player.GetButtonDown("UISubmit"))
             {
-                case "new":
-
-                    break;
-                case "load":
-
-                    break;
-                case "options":
-
-                    break;
-                case "quit":
-
-                    break;
-                case "resume":
-
-                    break;
-                case "back":
-
-                    break;
+                switch (command)
+                {
+                    case "new":
+                        menu.PlayGame();
+                        break;
+                    case "load":
+                        levelManager.LoadPlayer();
+                        break;
+                    case "options":
+                        cursor.GetComponent<ConsoleCursor>().menuIndex = 0;
+                        menu.LoadOptions();
+                        break;
+                    case "quit":
+                        levelManager.SavePlayerAndQuit();
+                        break;
+                    case "resume":
+                        menu.Resume();
+                        break;
+                    case "back":
+                        cursor.GetComponent<ConsoleCursor>().menuIndex = 0;
+                        menu.OptionsBack();
+                        break;
+                }
             }
         }
     }

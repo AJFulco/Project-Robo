@@ -31,6 +31,7 @@ public class ElevatorButton : MonoBehaviour
     private AudioSource audioComponent;
     [SerializeField] AudioClip ascend;
     [SerializeField] AudioClip descend;
+    [SerializeField] GameObject lift;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +42,16 @@ public class ElevatorButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canElevate) {
-            if (levelManager.Cycle == 3) {
-                if (player.GetButtonSinglePressHold("Interact")) 
+        if (canElevate)
+        {
+            if (levelManager.Cycle == 3)
+            {
+                if (player.GetButtonSinglePressHold("Interact"))
                 {
                     Debug.Log("Dubgg");
                     if (firstFloor && ascend != null) audioComponent.PlayOneShot(ascend);
                     else if (descend != null) audioComponent.PlayOneShot(descend);
-                    pM.TeleportPlayer(firstFloor);
+                    ElevatePlayer(firstFloor);
                     firstFloor = !firstFloor;
                 }
             }
@@ -66,6 +69,22 @@ public class ElevatorButton : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             canElevate = false;
+        }
+
+
+
+    }
+    public void ElevatePlayer(bool firstFloor)
+    {
+        if (firstFloor)
+        {
+            lift.GetComponent<Animator>().SetBool("firstFloor", true);
+            Debug.Log("To 2nd Floor");
+        }
+        else
+        {
+            lift.GetComponent<Animator>().SetBool("firstFloor", false);
+            Debug.Log("To 1st Floor");
         }
     }
 }

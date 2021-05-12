@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsMenuUI;
     public AudioMixer audioMixer;
     [SerializeField] private LevelManager levelManager = null;  // Reference to the LevelManager
+    [SerializeField] private ConsoleCursor cursor = null;
     public PlayerMovement playerMovement;   // Reference to the player movement script
     public PuzzleUI puzzleUI;   // Reference to the PuzzleUI script
 
@@ -34,6 +35,9 @@ public class MenuManager : MonoBehaviour
     {
         // Find and assign the LevelManager, so we can change the game state (for cameras switching)
         levelManager = FindObjectOfType<LevelManager>().GetComponent<LevelManager>();
+
+        cursor = FindObjectOfType<ConsoleCursor>().GetComponent<ConsoleCursor>();
+
         // Rewired stuff
         player = Rewired.ReInput.players.GetPlayer(playerId);
     }
@@ -48,6 +52,9 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0;
         playerMovement.isInAMenu = true;
 
+        cursor.gameObject.SetActive(true);
+        cursor.currMenuSize = 4;
+        cursor.menuIndex = 0;
     } // End of Start()
 
     // Update is called once per frame
@@ -66,7 +73,43 @@ public class MenuManager : MonoBehaviour
                 Pause();
             }
         }
+
+        HandleCursor();
     } // Emd of Update()
+
+    public void HandleCursor()
+    {
+        // mouseMode determines what puzzle control scheme is currently in use
+        bool mouseMode = true;
+
+        // Check Rewired to see what controller is currently being used
+        if (player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Keyboard>() ||
+            player.controllers.GetLastActiveController() == player.controllers.GetLastActiveController<Mouse>())
+        {
+            mouseMode = true;
+        }
+        else
+        {
+            mouseMode = false;
+        }
+
+        if (mouseMode)
+        {
+            if (cursor.gameObject.activeSelf)
+                cursor.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!cursor.gameObject.activeSelf)
+            {
+                if (mainMenuUI.activeSelf || pauseMenuUI.activeSelf || optionsMenuUI.activeSelf)
+                {
+                    cursor.menuIndex = 0;
+                    cursor.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
 
     public void PlayGame()
     {

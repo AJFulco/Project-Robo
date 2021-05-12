@@ -346,6 +346,7 @@ MonoBehaviour:
   holder: {fileID: 9084769516200461144}
   puzzleNearText: {fileID: 1030779318}
   puzzleStart: {fileID: 8300000, guid: 0226a44f04db1c94096e5b69046d5726, type: 3}
+  cursor: {fileID: 9084769515391746183}
   playerMovement: {fileID: 0}
   currentPuzzle: 0
   nearPuzzle: 0

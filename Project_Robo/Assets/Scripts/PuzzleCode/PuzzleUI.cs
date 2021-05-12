@@ -33,6 +33,7 @@ public class PuzzleUI : MonoBehaviour
     [SerializeField] public GameObject holder;
     [SerializeField] public Text puzzleNearText;
     [SerializeField] private AudioClip puzzleStart;
+    [SerializeField] private CursorFollow cursor;
     public PlayerMovement playerMovement; // Get reference to the PlayerMovement
 
     public int currentPuzzle = 0;
@@ -59,7 +60,10 @@ public class PuzzleUI : MonoBehaviour
     {
         // If the player is near a puzzle and presses Interact, display that puzzle
         if (nearPuzzle && player.GetButtonDown("Interact"))
+        {
+            cursor.currentNode = 2;
             togglePuzzle();
+        }
 
         //Debug.Log(player.GetCurrentInputSources("Horizontal").Count);
     }

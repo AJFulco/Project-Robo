@@ -6,10 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class EndTheGame : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private AssetBundle myLoadedAssetBundle;
+    private string[] scenePaths;
+
+    // Use this for initialization
     void Start()
     {
-        
+        myLoadedAssetBundle = AssetBundle.LoadFromFile("Assets/Scenes");
+        scenePaths = myLoadedAssetBundle.GetAllScenePaths();
     }
 
     // Update is called once per frame
@@ -22,7 +26,7 @@ public class EndTheGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("Credits Scene");
+            SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
         }
     }
 }

@@ -77,6 +77,10 @@ public class LevelManager : MonoBehaviour
     public bool inMenu;
     public bool inCutScene;
 
+    [SerializeField] private GameObject Elevator = null;
+    [SerializeField] private GameObject DoorHalfL = null;
+    [SerializeField] private GameObject DoorHalfR = null;
+
     public bool isBusy()
     {
         return inMenu || inCutScene;
@@ -178,8 +182,10 @@ public class LevelManager : MonoBehaviour
                             {
 
                                 DoorList[DoorSwitch - 1].Open();
+                                DoorHalfL.GetComponent<Animator>().SetBool("Animate", true);
                                 IncrementDoorSwitch();
                                 DoorList[DoorSwitch - 1].Open();
+                                DoorHalfR.GetComponent<Animator>().SetBool("Animate", true);
                                 IncrementDoorSwitch();
                                 
                             }
@@ -233,6 +239,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case 3://not using a switch statement this time, bc you can open any door in any order
                 musicSwapper(false);
+                ReplaceElevator();
                 if (CheckPuzzlesExist(11, 14))
                 {
                     if (CheckPuzzlesComplete(11, 11) && read1)
@@ -427,4 +434,10 @@ public class LevelManager : MonoBehaviour
         }
     }
     #endregion
+
+    void ReplaceElevator()
+    {
+        Destroy(GameObject.Find("Elevator3DInactive"));
+        Elevator.SetActive(true);
+    }
 }

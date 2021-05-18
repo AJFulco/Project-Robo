@@ -32,7 +32,13 @@ public class CreditsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // added by Adam, an alternate way to exit the game
+        // for impatient people
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("The game would close now!");
+            Application.Quit();
+        }
     }
 
     void SlideUpdate()

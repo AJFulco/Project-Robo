@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 0
-  selfObject: {fileID: 0}
+  selfObject: {fileID: 923616250725829827, guid: d031b2f1f28d89847bd10fb54e645e8e, type: 3}
   placementCube: {fileID: 8632859345123192786}
   taskTextPrefab: {fileID: 8025588474947579541, guid: 2b277a30c79b07648bff32e8b46ee8c9, type: 3}
-  puzzleID: 0
-  taskName: Observe the Monitor
+  puzzleID: 8
+  taskName: Fix the Room 2 Vending Machine
   taskHolder: {fileID: 0}
   taskText: {fileID: 0}
   cleared: 0
@@ -67,8 +67,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: -5, y: 0, z: 0}
+  m_Size: {x: 15.92, y: 13.8, z: 17.86}
+  m_Center: {x: 2.5, y: 8, z: 0}
 --- !u!1 &8632859345123192786
 GameObject:
   m_ObjectHideFlags: 0

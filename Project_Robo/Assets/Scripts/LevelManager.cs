@@ -77,9 +77,14 @@ public class LevelManager : MonoBehaviour
     public bool inMenu;
     public bool inCutScene;
 
+    [Space(2)]
+    [Header("Door Animations")]
     [SerializeField] private GameObject Elevator = null;
     [SerializeField] private GameObject DoorHalfL = null;
     [SerializeField] private GameObject DoorHalfR = null;
+    [SerializeField] private GameObject MissileDoorLeft = null;
+    [SerializeField] private GameObject MissileDoorRight = null;
+    [SerializeField] private GameObject GeneratorDoor = null;
 
     public bool isBusy()
     {
@@ -170,7 +175,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case 2: // The second game cycle
                 musicSwapper(false);
-                switch (DoorSwitch)     // Opening doors in Cycle 1
+                switch (DoorSwitch)     // Opening doors in Cycle 2
                 {
                     case 2: // Checking if puzzles 4,5 are complete
                         #region Opening lots of doors
@@ -198,6 +203,7 @@ public class LevelManager : MonoBehaviour
                             if (CheckPuzzlesComplete(6, 6))
                             {
                                 DoorList[DoorSwitch - 1].Open();
+                                MissileDoorLeft.GetComponent<Animator>().SetBool("Animate", true);
                                 IncrementDoorSwitch();
                             }
                         }
@@ -209,8 +215,10 @@ public class LevelManager : MonoBehaviour
                             if (CheckPuzzlesComplete(10, 10))
                             {
                                 DoorList[DoorSwitch - 1].Open();
+                                MissileDoorRight.GetComponent<Animator>().SetBool("Animate", true);
                                 IncrementDoorSwitch();
                                 DoorList[DoorSwitch - 1].Open();
+                                GeneratorDoor.GetComponent<Animator>().SetBool("Animate", true);
                                 IncrementDoorSwitch();
                             }
                         }

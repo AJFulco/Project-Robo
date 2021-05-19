@@ -301,7 +301,7 @@ public class MoleculeNode : MonoBehaviour
                 } 
             }
 
-            Debug.Log("sameColor: " + sameColor);
+            //Debug.Log("sameColor: " + sameColor);
 
             // Spiked nodes rule is only met if there is exactly one node of the same color connected to it
             if (sameColor == 1)

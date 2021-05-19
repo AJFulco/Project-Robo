@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06649189, g: 0.0705608, b: 0.016560622, a: 1}
+  m_IndirectSpecularColor: {r: 0.06650922, g: 0.0705466, b: 0.016554207, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6937546925440264988, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
   m_PrefabInstance: {fileID: 6937546925428077929}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 543873179}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db071aa0491269429f1156818a35c37, type: 3}
@@ -1253,11 +1253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7
+      value: -13.49
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.7
+      value: 35.79
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1305,7 +1305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Disable Lock on Cryo Room A
+      value: Open the Door to Cryo Room A
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -3325,7 +3325,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215345063}
-  m_LocalRotation: {x: 0.24738412, y: 0.0033419128, z: -0.00084894884, w: 0.9689114}
+  m_LocalRotation: {x: 0.24738431, y: 0.0033374424, z: -0.0008486061, w: 0.9689114}
   m_LocalPosition: {x: 0.000029802322, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3733,7 +3733,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6937546925473474066, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
   m_PrefabInstance: {fileID: 6937546925428077929}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1604131856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db071aa0491269429f1156818a35c37, type: 3}
@@ -5025,12 +5025,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Unlock Entrance to Navigation
+      value: Open the Door to the Bridge
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
       value: 
-      objectReference: {fileID: 3157150351387347238, guid: be88b286b44894a458547761bed8cccd, type: 3}
+      objectReference: {fileID: 1673357109208238326, guid: 818f3b1453049c545ab158425619a399, type: 3}
     - target: {fileID: 5340211444558257664, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5578,7 +5578,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6937546925606036447, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
   m_PrefabInstance: {fileID: 6937546925428077929}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1660583867}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db071aa0491269429f1156818a35c37, type: 3}
@@ -5758,6 +5758,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &402634668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7404391385651550272, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &402634669
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402634668}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7976a27fee87c741b1573af24d1c99e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &414830077
 Mesh:
   m_ObjectHideFlags: 0
@@ -6796,7 +6820,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471692356}
-  m_LocalRotation: {x: 0.24738397, y: 0.003341138, z: -0.00085307646, w: 0.96891147}
+  m_LocalRotation: {x: 0.24738419, y: 0.0033370252, z: -0.0008519961, w: 0.9689114}
   m_LocalPosition: {x: -2.696554, y: -4.8147492, z: 11.775042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7214,7 +7238,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477079265}
-  m_LocalRotation: {x: 0.1666901, y: 0.00000050663937, z: -0.00000011920926, w: 0.98600936}
+  m_LocalRotation: {x: 0.16668995, y: 0.00000050663937, z: -0.00000011175868, w: 0.98600936}
   m_LocalPosition: {x: 0.000029802322, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8650,6 +8674,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &543873179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2049998167776868028, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &543873180
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543873179}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a209826966e1d22468bd0e5a72ceab6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &573718993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4303903987963616101, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
@@ -10598,7 +10646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Release Lock on Missile Room A
+      value: Open the Door to Missile Room A
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -10862,7 +10910,7 @@ MonoBehaviour:
   - {fileID: 926779347}
   - {fileID: 265114491}
   - {fileID: 29761141}
-  - {fileID: 1429144453}
+  - {fileID: 0}
   volumeProfile:
   - {fileID: 11400000, guid: 6bd694df5e72afb4c803b8d444542c9f, type: 2}
   - {fileID: 11400000, guid: 6560139f8ea03904f8a5d3f467d56148, type: 2}
@@ -10892,6 +10940,10 @@ MonoBehaviour:
   MissileDoorLeft: {fileID: 6937546925428077931}
   MissileDoorRight: {fileID: 6937546925428077930}
   GeneratorDoor: {fileID: 1374754221}
+  ServerDoor: {fileID: 1651831747}
+  CryoDoorL: {fileID: 1660583867}
+  CryoDoorR: {fileID: 1604131856}
+  CaptainDoor: {fileID: 543873179}
 --- !u!4 &682660505
 Transform:
   m_ObjectHideFlags: 0
@@ -12621,7 +12673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Unlock the Left Door
+      value: Input the Left Door's Code
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -14834,7 +14886,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6937546926145663674, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
   m_PrefabInstance: {fileID: 6937546925428077929}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1651831747}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db071aa0491269429f1156818a35c37, type: 3}
@@ -23241,17 +23293,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1429144453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6937546926716974828, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
-  m_PrefabInstance: {fileID: 6937546925428077929}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db071aa0491269429f1156818a35c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1436833686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23317,7 +23358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Release Lock on Missile Room B
+      value: Open the Door to Missile Room B
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -23534,7 +23575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.83
+      value: 35.27
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23582,7 +23623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Activate the Floor 2 Doors
+      value: Open the Door to the Server Room
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -26301,6 +26342,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1604131856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5678969652758478841, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1604131857
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604131856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41581d1461ca1984e9135259024c032e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &1608115502
 Mesh:
   m_ObjectHideFlags: 0
@@ -26694,7 +26759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Unlock the Right door
+      value: Input the Right Door's Code
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
@@ -27401,6 +27466,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1651831747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5678969653415947089, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1651831748
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651831747}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07770d807d303424c872e5999b532173, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1653799891 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e83d3e0a83e9234ca584d8ae9cdeafd, type: 3}
@@ -27445,6 +27534,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2f65763876d7044a6a1d59ff62203a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1660583867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2049998168013880957, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1660583868
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660583867}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8a79a28dbf337740adbd3848d324f7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1676228024
 GameObject:
   m_ObjectHideFlags: 0
@@ -28940,7 +29053,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743334739}
-  m_LocalRotation: {x: 0.14879903, y: 0.00000041723246, z: -0.000000059604638, w: 0.9888675}
+  m_LocalRotation: {x: 0.14879905, y: 0.00000041723246, z: -0.00000006705522, w: 0.9888675}
   m_LocalPosition: {x: 0.000029802322, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -30149,11 +30262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.43
+      value: 41.9
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.7
+      value: 35.79
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30161,7 +30274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30169,11 +30282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -30181,7 +30294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 35519359056995997, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -30201,12 +30314,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: taskName
-      value: Disable Lock on Cryo Room B
+      value: Open the Door to Cryo Room B
       objectReference: {fileID: 0}
     - target: {fileID: 4724689960618247402, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: selfObject
       value: 
-      objectReference: {fileID: 3157150351387347238, guid: be88b286b44894a458547761bed8cccd, type: 3}
+      objectReference: {fileID: 1673357109208238326, guid: 818f3b1453049c545ab158425619a399, type: 3}
     - target: {fileID: 5340211444558257664, guid: dfee5ae93dc5600498ade1c042d49d70, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -36728,6 +36841,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 504347492}
+    - target: {fileID: 2484998913246000088, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 216.12025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484998913246000088, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 99.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484998913246000088, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -95.49
+      objectReference: {fileID: 0}
     - target: {fileID: 2615947669942047232, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -36960,6 +37085,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 72987442}
+    - target: {fileID: 5678969652758478841, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_Name
+      value: CryoChamberDoorR
+      objectReference: {fileID: 0}
     - target: {fileID: 5897310558300627164, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -37212,6 +37341,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 693255089}
+    - target: {fileID: 6937546926716974614, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_Name
+      value: Fake Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6937546926716974824, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -37260,6 +37393,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 510211923}
+    - target: {fileID: 7063962155795051737, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 184.40546
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063962155795051737, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -95.23
+      objectReference: {fileID: 0}
     - target: {fileID: 7281283863224883209, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -37764,6 +37905,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 162790052}
+    - target: {fileID: 7281283864285363410, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7281283864285363411, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 

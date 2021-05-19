@@ -85,6 +85,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject MissileDoorLeft = null;
     [SerializeField] private GameObject MissileDoorRight = null;
     [SerializeField] private GameObject GeneratorDoor = null;
+    [SerializeField] private GameObject ServerDoor = null;
+    [SerializeField] private GameObject CryoDoorL = null;
+    [SerializeField] private GameObject CryoDoorR = null;
+    [SerializeField] private GameObject CaptainDoor = null;
 
     public bool isBusy()
     {
@@ -175,6 +179,11 @@ public class LevelManager : MonoBehaviour
                 break;
             case 2: // The second game cycle
                 musicSwapper(false);
+                
+                // Permanent Speed Increase after 1st Cycle added by Adam
+                // playerMovementScript.speed = 25f;
+                // playerMovementScript.turnSmoothTime = 0.2f;
+                
                 switch (DoorSwitch)     // Opening doors in Cycle 2
                 {
                     case 2: // Checking if puzzles 4,5 are complete
@@ -187,10 +196,10 @@ public class LevelManager : MonoBehaviour
                             {
 
                                 DoorList[DoorSwitch - 1].Open();
-                                DoorHalfL.GetComponent<Animator>().SetBool("Animate", true);
+                                DoorHalfL.GetComponent<Animator>().SetBool("Animate", true); // Play Open animation
                                 IncrementDoorSwitch();
                                 DoorList[DoorSwitch - 1].Open();
-                                DoorHalfR.GetComponent<Animator>().SetBool("Animate", true);
+                                DoorHalfR.GetComponent<Animator>().SetBool("Animate", true); // Play Open animation
                                 IncrementDoorSwitch();
                                 
                             }
@@ -253,25 +262,30 @@ public class LevelManager : MonoBehaviour
                     if (CheckPuzzlesComplete(11, 11) && read1)
                     {
                         DoorList[6].Open();//hardcoded :( Sadge
+                        CryoDoorL.GetComponent<Animator>().SetBool("Animate", true);
                         read1 = false;
                     }
 
                     if (CheckPuzzlesComplete(12, 12) && read2)
                     {
                         DoorList[7].Open();
+                        ServerDoor.GetComponent<Animator>().SetBool("Animate", true);
                         read2 = false;
                     }
 
                     if (CheckPuzzlesComplete(13, 13) && read3)
                     {
                         DoorList[8].Open();
+                        CryoDoorR.GetComponent<Animator>().SetBool("Animate", true);
                         read3 = false;
                     }
                
                     if (CheckPuzzlesComplete(11, 14) && read4)
                     {
                         DoorList[9].Open();
+                        CaptainDoor.GetComponent<Animator>().SetBool("Animate", true);
                         DoorList[10].Open();
+                        Destroy(GameObject.Find("Fake Wall")); // "open" Robot Cell room
                         read3 = false;
                     }
                 }

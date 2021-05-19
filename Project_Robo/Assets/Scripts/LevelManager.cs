@@ -181,8 +181,8 @@ public class LevelManager : MonoBehaviour
                 musicSwapper(false);
                 
                 // Permanent Speed Increase after 1st Cycle added by Adam
-                // playerMovementScript.speed = 25f;
-                // playerMovementScript.turnSmoothTime = 0.2f;
+                playerMovementScript.speed = 25f;
+                playerMovementScript.turnSmoothTime = 0.2f;
                 
                 switch (DoorSwitch)     // Opening doors in Cycle 2
                 {

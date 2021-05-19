@@ -49,7 +49,7 @@ public class ConsoleButton : MonoBehaviour
     {
         if (this.transform.position.Equals(cursor.transform.position))
         {
-            Debug.Log("On button " + command);
+            //Debug.Log("On button " + command);
 
             if (player.GetButtonDown("UISubmit"))
             {

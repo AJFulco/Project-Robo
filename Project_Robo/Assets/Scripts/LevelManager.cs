@@ -293,7 +293,17 @@ public class LevelManager : MonoBehaviour
                 break;
         }
         #endregion
-
+        if (Input.GetKeyUp(KeyCode.Period))
+        {
+            if (Skybox < 7)
+            {
+                Skybox++;
+            } else
+            {
+                Skybox = 0;
+            }
+            SkyAndFogVolume.GetComponent<Volume>().sharedProfile = volumeProfile[Skybox];
+        }
     }
     #region Connor adds a bunch of small functions to make busywork faster later.
     private void ActivateSleepBays()//sets all the colliders in the sleepbays to true once the player finishes all the puzzles in a cylce

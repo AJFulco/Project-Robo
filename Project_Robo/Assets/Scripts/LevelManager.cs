@@ -19,7 +19,8 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public int progressState = 0;
     public int playerState = 0; //this is an int that will be used to keep track of what stat the game is in.
-    public int Cycle = 0; //What is the playthrough number for for the player 
+    public int Cycle = 0; //What is the playthrough number for the player
+    public int Skybox = 0;
     public int DoorSwitch = 0;
     public bool read1 = true;
     public bool read2 = true;
@@ -319,7 +320,8 @@ public class LevelManager : MonoBehaviour
         {
             Cycle++;
             Debug.Log("Cycle " + Cycle);
-            SkyAndFogVolume.GetComponent<Volume>().sharedProfile = volumeProfile[UnityEngine.Random.Range(0, 7)];
+            SkyAndFogVolume.GetComponent<Volume>().sharedProfile = volumeProfile[Skybox];
+            Skybox++;
         }
         else { Debug.Log("thats not supposed to happen! Too many cycles!"); }
     }

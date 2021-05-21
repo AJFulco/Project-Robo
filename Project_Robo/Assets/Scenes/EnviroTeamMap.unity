@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06648439, g: 0.07053031, b: 0.016563073, a: 1}
+  m_IndirectSpecularColor: {r: 0.06647819, g: 0.07054305, b: 0.016565897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3340,7 +3340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215345063}
-  m_LocalRotation: {x: 0.24738398, y: 0.0033403034, z: -0.00085357565, w: 0.9689114}
+  m_LocalRotation: {x: 0.24738434, y: 0.0033386047, z: -0.000853218, w: 0.9689113}
   m_LocalPosition: {x: 0.000029563904, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6489,7 +6489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471692356}
-  m_LocalRotation: {x: 0.24738397, y: 0.003341138, z: -0.00085307646, w: 0.96891147}
+  m_LocalRotation: {x: 0.24738441, y: 0.0033369954, z: -0.0008520036, w: 0.9689113}
   m_LocalPosition: {x: -2.7900298, y: -4.8147492, z: 11.775042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6907,7 +6907,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477079265}
-  m_LocalRotation: {x: 0.16669047, y: -0, z: -0, w: 0.9860093}
+  m_LocalRotation: {x: 0.16668998, y: -0, z: -0, w: 0.98600936}
   m_LocalPosition: {x: 0.000029563904, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9906,6 +9906,7 @@ MonoBehaviour:
   progressState: 0
   playerState: 0
   Cycle: 0
+  Skybox: 0
   DoorSwitch: 0
   read1: 1
   read2: 1
@@ -9938,14 +9939,12 @@ MonoBehaviour:
   - {fileID: 29761141}
   - {fileID: 0}
   volumeProfile:
-  - {fileID: 11400000, guid: 6bd694df5e72afb4c803b8d444542c9f, type: 2}
-  - {fileID: 11400000, guid: 6560139f8ea03904f8a5d3f467d56148, type: 2}
-  - {fileID: 11400000, guid: 19697e8c92394f943a5868a1243881f7, type: 2}
-  - {fileID: 11400000, guid: 03e4506b016b85644a97888f20d0cf79, type: 2}
-  - {fileID: 11400000, guid: b2132c869974b564bb86bc401a047c67, type: 2}
-  - {fileID: 11400000, guid: 8ab84ebc6c1702f49ad59354b88dc91a, type: 2}
-  - {fileID: 11400000, guid: a700c7d172e7aec4fbcf019cb7f760e1, type: 2}
   - {fileID: 11400000, guid: 42715875a36847e449e8a36838a7c417, type: 2}
+  - {fileID: 11400000, guid: 03e4506b016b85644a97888f20d0cf79, type: 2}
+  - {fileID: 11400000, guid: 6bd694df5e72afb4c803b8d444542c9f, type: 2}
+  - {fileID: 11400000, guid: 8ab84ebc6c1702f49ad59354b88dc91a, type: 2}
+  - {fileID: 11400000, guid: b2132c869974b564bb86bc401a047c67, type: 2}
+  - {fileID: 11400000, guid: a700c7d172e7aec4fbcf019cb7f760e1, type: 2}
   SkyAndFogVolume: {fileID: 448685047}
   firstFlrSleepingBays:
   - {fileID: 1153848966}
@@ -15062,7 +15061,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh83422
+  m_Name: pb_Mesh-154942
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25910,7 +25909,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743334739}
-  m_LocalRotation: {x: 0.14879899, y: -0, z: -0, w: 0.9888675}
+  m_LocalRotation: {x: 0.14879885, y: -0, z: -0, w: 0.9888675}
   m_LocalPosition: {x: 0.000029563904, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32606,6 +32605,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1748768581}
+    - target: {fileID: 670150229089029592, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_Size.x
+      value: 12.414595
+      objectReference: {fileID: 0}
+    - target: {fileID: 670150229089029592, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_Center.x
+      value: 1.3727028
+      objectReference: {fileID: 0}
+    - target: {fileID: 670150229089029592, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_Center.y
+      value: -1.0999999
+      objectReference: {fileID: 0}
     - target: {fileID: 711722893181171124, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -33233,6 +33244,10 @@ PrefabInstance:
     - target: {fileID: 6933624259341497806, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933624259341497806, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 6933624259341497806, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
       propertyPath: m_LocalPosition.z

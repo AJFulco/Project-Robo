@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06651421, g: 0.07055594, b: 0.016552106, a: 1}
+  m_IndirectSpecularColor: {r: 0.066492885, g: 0.070562005, b: 0.016559392, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3340,7 +3340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215345063}
-  m_LocalRotation: {x: 0.24738416, y: 0.003333896, z: -0.00085176516, w: 0.9689114}
+  m_LocalRotation: {x: 0.24738392, y: 0.0033382769, z: -0.0008530541, w: 0.96891147}
   m_LocalPosition: {x: 0.000029563904, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6489,8 +6489,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471692356}
-  m_LocalRotation: {x: 0.24738395, y: 0.003328591, z: -0.0008498503, w: 0.9689114}
-  m_LocalPosition: {x: -2.790001, y: -0.6488306, z: 1.0749178}
+  m_LocalRotation: {x: 0.24738398, y: 0.0033327932, z: -0.00085092324, w: 0.96891147}
+  m_LocalPosition: {x: -2.7900298, y: -4.8147492, z: 11.775042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1787929716}
@@ -6907,7 +6907,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477079265}
-  m_LocalRotation: {x: 0.16668998, y: -0, z: -0, w: 0.98600936}
+  m_LocalRotation: {x: 0.16669033, y: -0, z: -0, w: 0.98600936}
   m_LocalPosition: {x: 0.000029563904, y: 0, z: 0.000059485435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7989,6 +7989,11 @@ GameObject:
 --- !u!1 &573718993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4303903987963616101, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
+  m_PrefabInstance: {fileID: 6937546925428077929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &585976253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6937546926936045521, guid: 8e673f4b3aad62e48beeccf4da4f159b, type: 3}
   m_PrefabInstance: {fileID: 6937546925428077929}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &589465433
@@ -9955,7 +9960,7 @@ MonoBehaviour:
   calmSource: {fileID: 682660506}
   inMenu: 0
   inCutScene: 0
-  Elevator: {fileID: 0}
+  Elevator: {fileID: 585976253}
   DoorHalfL: {fileID: 1308752758}
   DoorHalfR: {fileID: 1032627958}
   MissileDoorLeft: {fileID: 6937546925428077931}
